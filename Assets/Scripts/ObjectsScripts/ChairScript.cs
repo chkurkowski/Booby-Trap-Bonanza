@@ -5,8 +5,9 @@ using UnityEngine;
 public class ChairScript : MonoBehaviour {
 
     public GameObject chairLeg;
-    public bool isActivated = false;
-    private bool canBeActivated = true;
+
+    public ObjectsScript objectScriptInfo;
+    
     
 	// Use this for initialization
 	void Start ()
@@ -17,9 +18,9 @@ public class ChairScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-		if(isActivated)
+		if(objectScriptInfo.isActivated)
         {
-            isActivated = true;
+            objectScriptInfo.isActivated = true;
             Instantiate(chairLeg, transform.position, transform.rotation);
             //set animation to destroyed version
             Destroy(gameObject);
