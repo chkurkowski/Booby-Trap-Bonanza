@@ -2,10 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChairScript : MonoBehaviour {
-    public GameObject chairLeg;
+public class ChandelierRopeScript : MonoBehaviour
+{
+    public GameObject chandelier;
     private bool isActive;
+	
     // Use this for initialization
+	void Start ()
+    {
+		
+	}
 	
 	// Update is called once per frame
 	void Update ()
@@ -13,24 +19,22 @@ public class ChairScript : MonoBehaviour {
         if(isActive)
         {
             isActive = false;
-            Instantiate(chairLeg, transform.position, transform.rotation);
+            chandelier.GetComponent<ChandelierScript>().isActive = true;
             //do breaking animation here
             //call Destroy at the end of the anim if it doesnt leave debris
             Destroy(gameObject);
         }
-       
-    }
+		
+	}
 
 
     private void OnTriggerEnter2D(Collider2D col)
     {
 
-        if (col.gameObject.tag == "Interactable" && col.gameObject.name != "WaterPuddle(Clone)")
+        if (col.gameObject.tag == "Interactable" && col.gameObject.name != "WaterPuddle(Clone)" && col.gameObject != chandelier)
         {
             isActive = true;
         }
 
     }
-
-
 }

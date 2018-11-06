@@ -16,4 +16,13 @@ public class ChairLegScript : MonoBehaviour {
     {
         chairLegRigidBody.velocity = Vector3.left * chairLegSpeed * Time.deltaTime;
 	}
+
+    private void OnTriggerEnter2D(Collider2D trig)
+    {
+        if(trig.gameObject.layer == 8)
+        {
+            Destroy(gameObject);
+        }
+    }
+    
 }
