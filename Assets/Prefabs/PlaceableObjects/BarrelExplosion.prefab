@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212917632941661158}
   - component: {fileID: 50420424731324982}
   - component: {fileID: 58283505275623310}
+  - component: {fileID: 114200000988128420}
   m_Layer: 0
   m_Name: BarrelExplosion
   m_TagString: Interactable
@@ -36,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1558955340841412}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.63, y: 0.08, z: -0.008007812}
+  m_LocalPosition: {x: 1.63, y: 0.08, z: 0}
   m_LocalScale: {x: 40, y: 40, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -77,6 +78,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.09
+--- !u!114 &114200000988128420
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1558955340841412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13eb8a55c58af724ab707f6346f3f2f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  growthRate: 1
+  burnLength: 0.3
 --- !u!212 &212917632941661158
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -20,8 +20,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4428687626075434}
   - component: {fileID: 212574897310196634}
-  - component: {fileID: 114991929128140834}
-  m_Layer: 0
+  - component: {fileID: 114894079300254872}
+  - component: {fileID: 61557558326454200}
+  m_Layer: 8
   m_Name: ChandelierRope
   m_TagString: ChandelierRope
   m_Icon: {fileID: 0}
@@ -35,13 +36,38 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1368023219115876}
   m_LocalRotation: {x: 0, y: 0, z: -0.38268343, w: 0.92387956}
-  m_LocalPosition: {x: 2.4, y: 0.69659764, z: -0.008007812}
+  m_LocalPosition: {x: 2.4, y: 0.69659764, z: 0}
   m_LocalScale: {x: 6.16, y: 0.25, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -45}
---- !u!114 &114991929128140834
+--- !u!61 &61557558326454200
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1368023219115876}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.512, y: 0.512}
+    newSize: {x: 0.512, y: 0.512}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.512, y: 0.512}
+  m_EdgeRadius: 0
+--- !u!114 &114894079300254872
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -49,14 +75,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1368023219115876}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9b93768b8e62954cbdd62b6b1138bfd, type: 3}
+  m_Script: {fileID: 11500000, guid: 376f4ac4e177e3d41aace630fc3b56a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chairLeg: {fileID: 0}
-  chandelier: {fileID: 0}
-  barrelExplosion: {fileID: 0}
-  flameWoosh: {fileID: 0}
-  waterPuddle: {fileID: 0}
+  chandelier: {fileID: 1722622206766824, guid: bdfee9988b958c548b7ef8f81c72a3f3, type: 2}
 --- !u!212 &212574897310196634
 SpriteRenderer:
   m_ObjectHideFlags: 1

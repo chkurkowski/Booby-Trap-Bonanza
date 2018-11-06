@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class ObjectsScript : MonoBehaviour {
 
-    private bool isActivated;
+    public bool isActivated;
   
     public GameObject chairLeg;
     public GameObject chandelier;
     public GameObject barrelExplosion;
     public GameObject flameWoosh;
+    public int wooshAmounts;
     public GameObject waterPuddle;
+    
+  
 
 
 	
@@ -36,7 +39,13 @@ public class ObjectsScript : MonoBehaviour {
             }
             else if(gameObject.tag == "Fireplace")
             {
-                Instantiate(flameWoosh, transform.position, transform.rotation);
+                
+                for(int i = 0; i < wooshAmounts; i++)
+                {
+                    //spawnDirection *= -1;
+                   // Instantiate(flameWoosh, transform.position + new Vector3(i * spawnDirection, transform.position.y, transform.position.z), transform.rotation);
+                }
+               
                 //do breaking animation here
                 //call Destroy at the end of the anim if it doesnt leave debris
 
@@ -58,10 +67,10 @@ public class ObjectsScript : MonoBehaviour {
         }
 	}
 
-    private void OnCollisionEnter2D(Collision2D col)
+    private void OnTriggerEnter2D(Collider2D col)
     {
         
-        if(col.gameObject.tag == "Interactable")
+        if(col.gameObject.tag == "Interactable" && col.gameObject.name != "WaterPuddle(Clone)" )
         {
             isActivated = true;
         }
