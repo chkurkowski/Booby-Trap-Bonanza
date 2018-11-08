@@ -21,9 +21,9 @@ GameObject:
   - component: {fileID: 4952889917542696}
   - component: {fileID: 212203511148331598}
   - component: {fileID: 58068270633477078}
-  - component: {fileID: 114249047571516770}
   - component: {fileID: 50135250250851434}
   - component: {fileID: 58573123027172360}
+  - component: {fileID: 114249047571516770}
   m_Layer: 0
   m_Name: RollingBarrel
   m_TagString: Interactable
