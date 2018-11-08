@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114209476870303256}
   - component: {fileID: 61310306269419768}
   m_Layer: 8
-  m_Name: WaterBucket
+  m_Name: WaterBucketPreview
   m_TagString: WaterBucket
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
