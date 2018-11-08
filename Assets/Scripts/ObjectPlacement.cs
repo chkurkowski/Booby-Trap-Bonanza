@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ObjectPlacement : MonoBehaviour {
 
+    public GameObject explodingBarrelPreview;
+    public GameObject waterBarrelPreview;
+    public GameObject rollingBarrelPreview;
     public GameObject explodingBarrel;
     public GameObject waterBarrel;
     public GameObject rollingBarrel;
@@ -21,6 +24,7 @@ public class ObjectPlacement : MonoBehaviour {
     [SerializeField]
     private GameObject currentObject;
     private bool validPos = false;
+    private Vector2 objectSize;
 
 	// Use this for initialization
 	void Start () 
@@ -35,31 +39,7 @@ public class ObjectPlacement : MonoBehaviour {
         FollowMouse();
         ClickToPlace();
 
-        TempObjectSelect();
-
-        if (selectedObject != 0)
-            SelectItem();
 	}
-
-    private void TempObjectSelect()
-    {
-        if(Input.GetKeyDown(KeyCode.Alpha0))
-        {
-            selectedObject = 0;
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            selectedObject = 1;
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            selectedObject = 2;
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            selectedObject = 3;
-        }
-    }
 
     private void GetMousePosition()
     {
@@ -67,19 +47,29 @@ public class ObjectPlacement : MonoBehaviour {
         mousePosition.z = -5;
     }
 
-    private void SelectItem()
+    public void SelectItem(int s)
     {
+        if (selectedObject != 0)
+            Destroy(currentObject);
+       
+        selectedObject = s;
+
         if (selectedObject == 1)
         {
-            currentObject = explodingBarrel;
+            GameObject gm = Instantiate(explodingBarrelPreview);
+            currentObject = gm;
+            objectSize = new Vector2(1.5f, 2.25f);
         }
         else if (selectedObject == 2)
         {
-            currentObject = waterBarrel;
+            GameObject gm = Instantiate(waterBarrelPreview);
+            currentObject = gm;
+            objectSize = new Vector2(1f, 1f);
         }
         else if (selectedObject == 3)
         {
-            currentObject = rollingBarrel;
+            GameObject gm = Instantiate(rollingBarrelPreview);
+            currentObject = gm;
         }
         else
         {
@@ -98,7 +88,7 @@ public class ObjectPlacement : MonoBehaviour {
 
     private void CheckValidPosition()
     {
-        if(Physics2D.OverlapBox(mousePosition, new Vector2(1, 1), 0f) != null)
+        if(Physics2D.OverlapBox(mousePosition, objectSize, 0f) != null)
         {
             //Set sprite to red
             currentObject.GetComponent<SpriteRenderer>().color = Color.red;
@@ -116,7 +106,26 @@ public class ObjectPlacement : MonoBehaviour {
     {
         if(Input.GetKeyDown(KeyCode.Mouse0) && currentObject != null && validPos)
         {
+            switch(selectedObject)
+            {
+                case 1:
+                    SpawnObject(explodingBarrel);
+                    break;
+                case 2:
+                    SpawnObject(waterBarrel);
+                    break;
+                case 3:
+                    SpawnObject(rollingBarrel);
+                    break;
 
+            }
         }
+    }
+
+    private void SpawnObject(GameObject gm)
+    {
+        Instantiate(gm, mousePosition, Quaternion.identity);
+        selectedObject = 0;
+        Destroy(currentObject);
     }
 }
