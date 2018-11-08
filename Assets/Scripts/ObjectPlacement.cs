@@ -10,37 +10,56 @@ public class ObjectPlacement : MonoBehaviour {
     public Camera cam;
 
     /*
-     * 0 = explodingBarrel
-     * 1 = waterBarrel
-     * 2 = rollingBarrel
+     * 1 = explodingBarrel
+     * 2 = waterBarrel
+     * 3 = rollingBarrel
      */
+    [SerializeField]
     private int selectedObject;
+    [SerializeField]
     private Vector3 mousePosition;
+    [SerializeField]
+    private GameObject currentObject;
+    private bool validPos = false;
 
 	// Use this for initialization
 	void Start () 
     {
-        cam = GetComponent<Camera>();
+
 	}
 	
 	// Update is called once per frame
 	void Update () 
     {
         GetMousePosition();
+        FollowMouse();
+        ClickToPlace();
 
-        if (selectedObject == 0)
-        {
-            GetMousePosition();
-        }
-        else if (selectedObject == 1)
-        {
-            GetMousePosition();
-        }
-        else if(selectedObject == 2)
-        {
-            GetMousePosition();
-        }
+        TempObjectSelect();
+
+        if (selectedObject != 0)
+            SelectItem();
 	}
+
+    private void TempObjectSelect()
+    {
+        if(Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            selectedObject = 0;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            selectedObject = 1;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            selectedObject = 2;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            selectedObject = 3;
+        }
+    }
 
     private void GetMousePosition()
     {
@@ -48,13 +67,56 @@ public class ObjectPlacement : MonoBehaviour {
         mousePosition.z = -5;
     }
 
-    private void FollowMouse(GameObject obj)
+    private void SelectItem()
     {
-        if (obj == null)
+        if (selectedObject == 1)
         {
-            return;
+            currentObject = explodingBarrel;
         }
+        else if (selectedObject == 2)
+        {
+            currentObject = waterBarrel;
+        }
+        else if (selectedObject == 3)
+        {
+            currentObject = rollingBarrel;
+        }
+        else
+        {
+            currentObject = null;
+        }
+    }
 
+    private void FollowMouse()
+    {
+        if(currentObject != null)
+        {
+            currentObject.transform.position = mousePosition;
+            CheckValidPosition();
+        }
+    }
 
+    private void CheckValidPosition()
+    {
+        if(Physics2D.OverlapBox(mousePosition, new Vector2(1, 1), 0f) != null)
+        {
+            //Set sprite to red
+            currentObject.GetComponent<SpriteRenderer>().color = Color.red;
+            validPos = false;
+        }
+        else 
+        {
+            //Set sprite to green
+            currentObject.GetComponent<SpriteRenderer>().color = Color.green;
+            validPos = true;
+        }
+    }
+
+    private void ClickToPlace()
+    {
+        if(Input.GetKeyDown(KeyCode.Mouse0) && currentObject != null && validPos)
+        {
+
+        }
     }
 }
