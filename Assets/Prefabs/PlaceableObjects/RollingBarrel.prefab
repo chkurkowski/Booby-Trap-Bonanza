@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 50135250250851434}
   - component: {fileID: 58573123027172360}
   - component: {fileID: 95154190191191594}
+  - component: {fileID: 114249047571516770}
   m_Layer: 0
   m_Name: RollingBarrel
   m_TagString: Interactable
@@ -114,7 +115,7 @@ Animator:
   m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114249047571516770
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1322959281585074}
