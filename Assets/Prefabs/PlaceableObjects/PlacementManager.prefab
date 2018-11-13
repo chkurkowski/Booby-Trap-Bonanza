@@ -57,12 +57,15 @@ MonoBehaviour:
     type: 2}
   rollingBarrelPreview: {fileID: 1322959281585074, guid: 41f2fd0d42b224dea8d76a562b8d42f9,
     type: 2}
+  chairPreview: {fileID: 1702424154088674, guid: 6a853813296284bb6a236c62afcd3368,
+    type: 2}
   explodingBarrel: {fileID: 1707040267105348, guid: af947d867ed024c4e97fcf3918609db5,
     type: 2}
   waterBarrel: {fileID: 1350382271859888, guid: f0138a5a86aab884c9315ce75f19f108,
     type: 2}
   rollingBarrel: {fileID: 1322959281585074, guid: e26101e1989078144bab01a1f7b1c600,
     type: 2}
+  chair: {fileID: 1702424154088674, guid: bb7817e6b80741d4592c4cb8e6fff272, type: 2}
   cam: {fileID: 0}
   selectedObject: 0
   mousePosition: {x: 0, y: 0, z: 0}
