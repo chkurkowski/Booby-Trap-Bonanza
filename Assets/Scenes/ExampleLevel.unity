@@ -1039,9 +1039,7 @@ Transform:
   - {fileID: 740237784}
   - {fileID: 1396754759}
   - {fileID: 618785750}
-  - {fileID: 1582381187}
-  - {fileID: 877129989}
-  - {fileID: 183674993}
+  - {fileID: 905233275}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1284,6 +1282,56 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4597754274902566, guid: fbead39f458b23441b76b785bab2ef56,
     type: 2}
   m_PrefabInternal: {fileID: 948035104}
+--- !u!1001 &1317885397
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 882772656}
+    m_Modifications:
+    - target: {fileID: 4124332835022008, guid: af947d867ed024c4e97fcf3918609db5, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 1.6782732
+      objectReference: {fileID: 0}
+    - target: {fileID: 4124332835022008, guid: af947d867ed024c4e97fcf3918609db5, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 3.4897327
+      objectReference: {fileID: 0}
+    - target: {fileID: 4124332835022008, guid: af947d867ed024c4e97fcf3918609db5, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -4.5466747
+      objectReference: {fileID: 0}
+    - target: {fileID: 4124332835022008, guid: af947d867ed024c4e97fcf3918609db5, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4124332835022008, guid: af947d867ed024c4e97fcf3918609db5, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4124332835022008, guid: af947d867ed024c4e97fcf3918609db5, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4124332835022008, guid: af947d867ed024c4e97fcf3918609db5, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4124332835022008, guid: af947d867ed024c4e97fcf3918609db5, type: 2}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4124332835022008, guid: af947d867ed024c4e97fcf3918609db5, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4124332835022008, guid: af947d867ed024c4e97fcf3918609db5, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: af947d867ed024c4e97fcf3918609db5, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!4 &1351861511 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4958573902756592, guid: 52e3939adecf6374198c8e164c69fc18,
@@ -1844,6 +1892,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4879657309758964, guid: bb7817e6b80741d4592c4cb8e6fff272,
     type: 2}
   m_PrefabInternal: {fileID: 2028583692}
+
 --- !u!1001 &1905726083
 Prefab:
   m_ObjectHideFlags: 0
@@ -2034,11 +2083,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4879657309758964, guid: bb7817e6b80741d4592c4cb8e6fff272, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 10.8
+      value: 13.96
       objectReference: {fileID: 0}
     - target: {fileID: 4879657309758964, guid: bb7817e6b80741d4592c4cb8e6fff272, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -2.0344858
+      value: -2.05
       objectReference: {fileID: 0}
     - target: {fileID: 4879657309758964, guid: bb7817e6b80741d4592c4cb8e6fff272, type: 2}
       propertyPath: m_LocalPosition.z
@@ -2071,6 +2120,10 @@ Prefab:
     - target: {fileID: 4879657309758964, guid: bb7817e6b80741d4592c4cb8e6fff272, type: 2}
       propertyPath: m_LocalScale.x
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4879657309758964, guid: bb7817e6b80741d4592c4cb8e6fff272, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb7817e6b80741d4592c4cb8e6fff272, type: 2}
