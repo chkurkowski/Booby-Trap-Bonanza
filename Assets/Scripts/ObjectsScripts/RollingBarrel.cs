@@ -8,6 +8,8 @@ public class RollingBarrel : MonoBehaviour
     public int rollDirection = 1;
     public float rollSpeed = 15f;
     private Rigidbody2D barrelRigidBody;
+    private bool canMove = false;
+
     // Use this for initialization
     void Start()
     {
@@ -17,7 +19,8 @@ public class RollingBarrel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Move();
+        if(canMove)
+            Move();
     }
 
     public void Move()
@@ -30,6 +33,11 @@ public class RollingBarrel : MonoBehaviour
         if(trig.gameObject.layer == 8)
         {
             Destroy(gameObject);
+        }
+
+        if (trig.tag == "Ground")
+        {
+            canMove = true;
         }
     }
 }
