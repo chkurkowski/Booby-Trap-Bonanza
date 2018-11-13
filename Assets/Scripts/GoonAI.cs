@@ -19,12 +19,16 @@ public class GoonAI : MonoBehaviour {
     private float idleTimer = 0f;
     private float IDLETIME = 2f;
 
-    [SerializeField]
-    private Vector2[] waypoints;
+    public  Vector2[] waypoints;
     private Vector2 target;
     private float speed = 2;
     private int currentWaypoint = 0;
     private int patrolDirection = -1;
+    private int currentDirection;
+
+    private bool moving = false;
+    private bool burning = false;
+    private bool sliding = false;
 
 	// Use this for initialization
 	void Start () {
@@ -71,6 +75,7 @@ public class GoonAI : MonoBehaviour {
 
     private void Idle()
     {
+        moving = false;
         idleTimer += Time.deltaTime;
 
         if(idleTimer >= IDLETIME)
@@ -83,10 +88,11 @@ public class GoonAI : MonoBehaviour {
     private void Patrol()
     {
         float distance = Vector2.Distance(transform.position, target);
+        float dirDist = transform.position.x - target.x;
         float step = speed * Time.deltaTime;
+        moving = true;
 
-        //TODO: Instead of this approach, check direction of the next waypoint then have the goon transform.Translate to it.
-        //Set animation here.
+        //TODO Set animation here.
         transform.position = Vector2.MoveTowards(transform.position, target, step);
 
 
@@ -102,6 +108,13 @@ public class GoonAI : MonoBehaviour {
             }
             state = State.IDLE;
         }
+
+        if (dirDist < 0)
+        {
+            currentDirection = 1;
+        }
+        else
+            currentDirection = -1;
     }
 
     private void Alert()
@@ -111,6 +124,17 @@ public class GoonAI : MonoBehaviour {
 
     private void Burning()
     {
+        speed = .1f;
+        Invoke("BurningDeathAnim", 4);
+        burning = true;
+
+        if(currentDirection > 0)
+            transform.Translate(Vector3.right * speed);
+        else
+            transform.Translate(-Vector3.right * speed);
+
+        gameObject.layer = 0;
+        gameObject.tag = "Interactable";
 
     }
 
@@ -163,6 +187,12 @@ public class GoonAI : MonoBehaviour {
         }
     }
 
+    private void BurningDeathAnim()
+    {
+        //TODO burning death anim
+        Destroy(gameObject);
+    }
+
     //private void StayOnGround()
     //{
     //    RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector3.up, 10);
@@ -177,17 +207,34 @@ public class GoonAI : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag == "Interactable")
-        {
-            Destroy(gameObject);
-        }
-        else if (col.gameObject.name == "WaterPuddle(Clone)")
+        if (burning || sliding)
         {
 
         }
-        else if (col.gameObject.name == "FlameWoosh(Clone)")
+        else
         {
-
+            if (col.gameObject.name == "WaterPuddle(Clone)")
+            {
+                //TODO Slide animation
+                state = State.SLIDING;
+            }
+            else if (col.gameObject.name == "FlameWoosh(Clone)")
+            {
+                //TODO Running on fire animation
+                state = State.BURNING;
+            }
+            else if (col.gameObject.name == "BarrelExplosion(Clone")
+            {
+                //TODO Explosion death animation
+            }
+            else if (col.gameObject.name == "ChairLeg(Clone)")
+            {
+                //TODO Chair leg death here
+            }
+            else if (col.gameObject.name == "Chandelier(Clone)")
+            {
+                //TODO Chandelier death here
+            }
         }
     }
 }
