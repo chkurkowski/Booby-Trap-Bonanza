@@ -23,6 +23,14 @@ public class ExplosiveBarrelScript : MonoBehaviour {
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Interactable" && col.gameObject.name != "WaterPuddle(Clone)")
+        {
+            isActive = true;
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.tag == "Interactable" && col.gameObject.name != "WaterPuddle(Clone)")
@@ -30,4 +38,5 @@ public class ExplosiveBarrelScript : MonoBehaviour {
             isActive = true;
         }
     }
+
 }
