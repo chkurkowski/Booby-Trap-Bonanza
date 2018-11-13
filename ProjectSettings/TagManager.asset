@@ -10,7 +10,7 @@ TagManager:
   - ExplosiveBarrel
   - WaterBucket
   - Interactable
-  - Ground
+  - ChandelierSpool
   layers:
   - Default
   - TransparentFX

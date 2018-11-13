@@ -1,7 +1,8 @@
 fileFormatVersion: 2
-guid: 48e34b976a5284e81ba6b5f746f70047
+guid: 00565c977e0d37a448cedfaa02816496
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: placeholderRope_0
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -42,10 +43,10 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 1
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 25
+  spritePixelsToUnits: 300
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -104,11 +105,31 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: placeholderRope_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc07264c460085144bbdd0ec30817206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 38c706a7c47b24434abe87bf6e676b6b
+    spriteID: 52f24e54cc4ff704499c5e1f9c97a049
     vertices: []
     indices: 
     edges: []

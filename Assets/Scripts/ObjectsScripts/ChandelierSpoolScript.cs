@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChandelierRopeScript : MonoBehaviour
-{
+public class ChandelierSpoolScript : MonoBehaviour {
     public GameObject chandelier;
+    public GameObject chandelierRope;
     private bool isActive;
-	
     // Use this for initialization
-	void Start ()
+    void Start ()
     {
 		
 	}
@@ -16,22 +15,21 @@ public class ChandelierRopeScript : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        if(isActive)
+        if (isActive)
         {
             isActive = false;
             chandelier.GetComponent<ChandelierScript>().isActive = true;
+            Destroy(chandelierRope);
             //do breaking animation here
             //call Destroy at the end of the anim if it doesnt leave debris
             Destroy(gameObject);
         }
-		
-	}
-
+    }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
 
-        if (col.gameObject.tag == "Interactable" && col.gameObject.name != "WaterPuddle(Clone)" && col.gameObject != chandelier)
+        if (col.gameObject.tag == "Interactable" && col.gameObject.name != "WaterPuddle(Clone)")
         {
             isActive = true;
         }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ChairLegScript : MonoBehaviour {
     public float chairLegSpeed;
+    public float direction;
     private Rigidbody2D chairLegRigidBody;
 	// Use this for initialization
 	void Start ()
@@ -14,7 +15,7 @@ public class ChairLegScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        chairLegRigidBody.velocity = Vector3.left * chairLegSpeed * Time.deltaTime;
+        chairLegRigidBody.velocity = Vector3.left * chairLegSpeed * direction * Time.deltaTime;
 	}
 
     private void OnTriggerEnter2D(Collider2D trig)
