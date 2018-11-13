@@ -174,4 +174,20 @@ public class GoonAI : MonoBehaviour {
     //        transform.position = new Vector3(transform.position.x, tempY, transform.position.z);
     //    }
     //}
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.tag == "Interactable")
+        {
+            Destroy(gameObject);
+        }
+        else if (col.gameObject.name == "WaterPuddle(Clone)")
+        {
+
+        }
+        else if (col.gameObject.name == "FlameWoosh(Clone)")
+        {
+
+        }
+    }
 }

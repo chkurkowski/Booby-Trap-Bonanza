@@ -12,6 +12,7 @@ TagManager:
   - Interactable
   - ChandelierSpool
   - Ground
+  - Enemy
   layers:
   - Default
   - TransparentFX
