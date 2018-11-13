@@ -22,19 +22,15 @@ public class GoonAI : MonoBehaviour {
     [SerializeField]
     private Vector2[] waypoints;
     private Vector2 target;
+    private float speed = 2;
     private int currentWaypoint = 0;
+    private int patrolDirection = -1;
 
 	// Use this for initialization
 	void Start () {
         alive = true;
         state = State.IDLE;
         RandomizePosition();
-
-
-        for (int i = 0; i < waypoints.Length; i++)
-        {
-            print(waypoints[i]);
-        }
 
 
         StartCoroutine("FSM");
@@ -46,7 +42,7 @@ public class GoonAI : MonoBehaviour {
     {
         while(alive)
         {
-            //print(state);
+            print(state);
 
             switch (state)
             {
@@ -86,9 +82,26 @@ public class GoonAI : MonoBehaviour {
 
     private void Patrol()
     {
+        float distance = Vector2.Distance(transform.position, target);
+        float step = speed * Time.deltaTime;
+
+        //TODO: Instead of this approach, check direction of the next waypoint then have the goon transform.Translate to it.
+        //Set animation here.
+        transform.position = Vector2.MoveTowards(transform.position, target, step);
 
 
-        state = State.IDLE;
+        if(distance < .001f)
+        {
+            if(patrolDirection < 0)
+            {
+                DecrementTarget();
+            }
+            else
+            {
+                IncrementTarget();
+            }
+            state = State.IDLE;
+        }
     }
 
     private void Alert()
@@ -115,9 +128,10 @@ public class GoonAI : MonoBehaviour {
 
     private void RandomizePosition()
     {
-        currentWaypoint = Random.Range(0, waypoints.Length);
+        currentWaypoint = Random.Range(0, waypoints.Length - 1);
         target = waypoints[currentWaypoint];
-        transform.position = target;
+        int temp = currentWaypoint + 1;
+        transform.position = waypoints[temp];
     }
 
     private void IncrementTarget()
@@ -148,4 +162,16 @@ public class GoonAI : MonoBehaviour {
             target = waypoints[currentWaypoint--];
         }
     }
+
+    //private void StayOnGround()
+    //{
+    //    RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector3.up, 10);
+
+    //    if(hit.collider.tag == "Ground")
+    //    {
+    //        float groundDist = hit.distance;
+    //        float tempY = hit.distance - transform.GetComponent<Collider2D>().bounds.extents.y;
+    //        transform.position = new Vector3(transform.position.x, tempY, transform.position.z);
+    //    }
+    //}
 }
