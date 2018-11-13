@@ -13,8 +13,8 @@ public class ChairScript : MonoBehaviour {
         if(isActive)
         {
             isActive = false;
-            Instantiate(chairLeg, transform.position, transform.rotation);
-            //do breaking animation here
+           GameObject spawnedChairLeg = Instantiate(chairLeg, transform.position, transform.rotation);
+            spawnedChairLeg.GetComponent<ChairLegScript>().direction = gameObject.transform.localScale.x; //do breaking animation here
             //call Destroy at the end of the anim if it doesnt leave debris
             Destroy(gameObject);
         }

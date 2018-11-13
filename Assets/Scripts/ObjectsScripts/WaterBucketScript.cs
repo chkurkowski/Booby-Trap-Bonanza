@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WaterBucketScript : MonoBehaviour {
     public GameObject waterPuddle;
-    private bool isActive;
+    public bool isActive;
 	// Use this for initialization
 	void Start () {
 		
@@ -22,12 +22,14 @@ public class WaterBucketScript : MonoBehaviour {
         }
 	}
 
-    private void OnTriggerEnter2D(Collider2D col)
+    private void OnCollisionEnter2D(Collision2D col)
     {
-
+        //Debug.Log("Col detected");
         if (col.gameObject.tag == "Interactable" && col.gameObject.name != "WaterPuddle(Clone)")
         {
+            //Debug.Log("Chandelier detected");
             isActive = true;
+            
         }
 
     }
