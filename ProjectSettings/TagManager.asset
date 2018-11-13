@@ -11,6 +11,7 @@ TagManager:
   - WaterBucket
   - Interactable
   - ChandelierSpool
+  - Ground
   layers:
   - Default
   - TransparentFX
