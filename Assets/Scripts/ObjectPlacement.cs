@@ -39,7 +39,24 @@ public class ObjectPlacement : MonoBehaviour {
         FollowMouse();
         ClickToPlace();
 
+        SelectItem();
 	}
+
+    private void SelectItem()
+    {
+        if(Input.GetKey(KeyCode.Alpha1))
+        {
+            SelectItem(1);
+        }
+        if (Input.GetKey(KeyCode.Alpha2))
+        {
+            SelectItem(2);
+        }
+        if (Input.GetKey(KeyCode.Alpha3))
+        {
+            SelectItem(3);
+        }
+    }
 
     private void GetMousePosition()
     {
