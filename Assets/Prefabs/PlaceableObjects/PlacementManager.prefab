@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1445401912172088}
+  m_IsPrefabAsset: 1
+--- !u!1 &1445401912172088
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4441126407128162}
+  - component: {fileID: 114059014486819518}
+  m_Layer: 0
+  m_Name: PlacementManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4441126407128162
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1445401912172088}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.33780062, y: -0.14938763, z: -0.038008656}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114059014486819518
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1445401912172088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 428e42ab330fb4167a8e091a39f24f99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explodingBarrelPreview: {fileID: 1707040267105348, guid: 1066a7f028e03478d94761a867b0bb3d,
+    type: 2}
+  waterBarrelPreview: {fileID: 1350382271859888, guid: 78d59cb56918242a6a826fa9bdff1f46,
+    type: 2}
+  rollingBarrelPreview: {fileID: 1322959281585074, guid: 41f2fd0d42b224dea8d76a562b8d42f9,
+    type: 2}
+  explodingBarrel: {fileID: 1707040267105348, guid: af947d867ed024c4e97fcf3918609db5,
+    type: 2}
+  waterBarrel: {fileID: 1350382271859888, guid: f0138a5a86aab884c9315ce75f19f108,
+    type: 2}
+  rollingBarrel: {fileID: 1322959281585074, guid: e26101e1989078144bab01a1f7b1c600,
+    type: 2}
+  cam: {fileID: 0}
+  selectedObject: 0
+  mousePosition: {x: 0, y: 0, z: 0}
+  currentObject: {fileID: 0}

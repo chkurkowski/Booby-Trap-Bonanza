@@ -115,9 +115,17 @@ public class ObjectPlacement : MonoBehaviour {
                     SpawnObject(waterBarrel);
                     break;
                 case 3:
-                    SpawnObject(rollingBarrel);
+                    SpawnObject(rollingBarrel, -1);
                     break;
 
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse1) && currentObject != null && validPos)
+        {
+            if(selectedObject == 3)
+            {
+                SpawnObject(rollingBarrel, 1);
             }
         }
     }
@@ -125,6 +133,15 @@ public class ObjectPlacement : MonoBehaviour {
     private void SpawnObject(GameObject gm)
     {
         Instantiate(gm, mousePosition, Quaternion.identity);
+        selectedObject = 0;
+        Destroy(currentObject);
+    }
+
+    //Spawns object and passes a direction for the rolling barrel
+    private void SpawnObject(GameObject gm, int rolldirection)
+    {
+        GameObject barrel = Instantiate(gm, mousePosition, Quaternion.identity);
+        barrel.GetComponent<RollingBarrel>().rollDirection = rolldirection;
         selectedObject = 0;
         Destroy(currentObject);
     }
