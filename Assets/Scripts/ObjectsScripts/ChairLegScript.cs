@@ -25,5 +25,7 @@ public class ChairLegScript : MonoBehaviour {
             Destroy(gameObject);
         }
     }
-    
+
+  
+
 }
