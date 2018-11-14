@@ -19,11 +19,12 @@ public class GoonAI : MonoBehaviour {
     private float idleTimer = 0f;
     private float IDLETIME = 2f;
 
+    [SerializeField]
+    private int patrolDirection = -1;
     public  Vector2[] waypoints;
     private Vector2 target;
     private float speed = 2;
     private int currentWaypoint = 0;
-    private int patrolDirection = -1;
     private int currentDirection;
 
     private bool moving = false;
@@ -135,12 +136,20 @@ public class GoonAI : MonoBehaviour {
 
         gameObject.layer = 0;
         gameObject.tag = "Interactable";
-
     }
 
     private void Sliding()
     {
+        speed = .08f;
+        sliding = true;
 
+        if (currentDirection > 0)
+            transform.Translate(Vector3.right * speed);
+        else
+            transform.Translate(-Vector3.right * speed);
+
+        gameObject.layer = 0;
+        gameObject.tag = "Interactable";
     }
 
     private void Dying()
@@ -207,34 +216,52 @@ public class GoonAI : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (burning || sliding)
+        if (col.gameObject.name == "WaterPuddle(Clone)")
         {
-
+            //TODO Slide animation
+            state = State.SLIDING;
         }
-        else
+        else if (col.gameObject.name == "FlameWoosh(Clone)")
         {
-            if (col.gameObject.name == "WaterPuddle(Clone)")
+            //TODO Running on fire animation
+            state = State.BURNING;
+        }
+        else if (col.gameObject.name == "BarrelExplosion(Clone")
+        {
+            //TODO Explosion death animation
+        }
+        else if (col.gameObject.name == "ChairLeg(Clone)")
+        {
+            //TODO Chair leg death here
+        }
+        else if (col.gameObject.name == "Chandelier(Clone)")
+        {
+            //TODO Chandelier death here
+        }
+        else if(col.gameObject.name == "RollingBarrel(Clone)")
+        {
+            //TODO Rolling barrel death anim
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if (burning)
+        {
+            print("Hit");
+            if (col.gameObject.tag == "Wall")
             {
-                //TODO Slide animation
-                state = State.SLIDING;
+                print("Hit Wall");
+                if (currentDirection < 0)
+                    currentDirection = 1;
+                else
+                    currentDirection = -1;
             }
-            else if (col.gameObject.name == "FlameWoosh(Clone)")
-            {
-                //TODO Running on fire animation
-                state = State.BURNING;
-            }
-            else if (col.gameObject.name == "BarrelExplosion(Clone")
-            {
-                //TODO Explosion death animation
-            }
-            else if (col.gameObject.name == "ChairLeg(Clone)")
-            {
-                //TODO Chair leg death here
-            }
-            else if (col.gameObject.name == "Chandelier(Clone)")
-            {
-                //TODO Chandelier death here
-            }
+        }
+
+        if(sliding)
+        {
+            Destroy(gameObject);
         }
     }
 }
