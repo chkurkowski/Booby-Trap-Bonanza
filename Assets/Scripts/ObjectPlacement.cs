@@ -87,17 +87,19 @@ public class ObjectPlacement : MonoBehaviour {
         {
             GameObject gm = Instantiate(waterBarrelPreview);
             currentObject = gm;
-            objectSize = new Vector2(1f, 1f);
+            objectSize = new Vector2(1f, 2.4f);
         }
         else if (selectedObject == 3)
         {
             GameObject gm = Instantiate(rollingBarrelPreview);
             currentObject = gm;
+            objectSize = new Vector2(1.5f, 1.5f);
         }
         else if (selectedObject == 4)
         {
             GameObject gm = Instantiate(chairPreview);
             currentObject = gm;
+            objectSize = new Vector2(1.45f, 1.5f);
         }
         else
         {

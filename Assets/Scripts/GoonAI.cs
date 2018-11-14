@@ -17,6 +17,7 @@ public class GoonAI : MonoBehaviour {
     private bool alive;
 
     private float idleTimer = 0f;
+    [SerializeField]
     private float IDLETIME = 2f;
 
     [SerializeField]
@@ -293,11 +294,10 @@ public class GoonAI : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        Debug.Log("This collision happened");
+        //Debug.Log("This collision happened");
         
             if (burning)
             {
-                print("Hit");
                 if (col.gameObject.tag == "Wall")
                 {
                     print("Hit Wall");
@@ -343,7 +343,7 @@ public class GoonAI : MonoBehaviour {
             }
             else if (col.gameObject.name == "RollingBarrel(Clone)")
             {
-                Debug.Log("I WAAANT TO DIEEE");
+                //Debug.Log("I WAAANT TO DIEEE");
                 animatorInfo.SetBool("isKill", true);
             }
     }

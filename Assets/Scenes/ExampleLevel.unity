@@ -475,7 +475,25 @@ Prefab:
         type: 2}
       propertyPath: chairPreview
       value: 
-      objectReference: {fileID: 1702424154088674, guid: 6a853813296284bb6a236c62afcd3368,
+      objectReference: {fileID: 1702424154088674, guid: f8d244c2875c547d6a91c4a30c7e9cfd,
+        type: 2}
+    - target: {fileID: 114059014486819518, guid: bc1a8c7dca8ff4fd08e81a00fca33e97,
+        type: 2}
+      propertyPath: explodingBarrelPreview
+      value: 
+      objectReference: {fileID: 1707040267105348, guid: 2c66dfa9ff7904857805cce29b9f24eb,
+        type: 2}
+    - target: {fileID: 114059014486819518, guid: bc1a8c7dca8ff4fd08e81a00fca33e97,
+        type: 2}
+      propertyPath: waterBarrelPreview
+      value: 
+      objectReference: {fileID: 1350382271859888, guid: 8fbd9ecd2ed614cea80ebed90ab7f906,
+        type: 2}
+    - target: {fileID: 114059014486819518, guid: bc1a8c7dca8ff4fd08e81a00fca33e97,
+        type: 2}
+      propertyPath: rollingBarrelPreview
+      value: 
+      objectReference: {fileID: 1322959281585074, guid: a2dc447906eaf43e9a31c5682c3e2846,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc1a8c7dca8ff4fd08e81a00fca33e97, type: 2}
@@ -1368,24 +1386,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 4124332835022008, guid: af947d867ed024c4e97fcf3918609db5, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4124332835022008, guid: af947d867ed024c4e97fcf3918609db5, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 61978312471721952, guid: af947d867ed024c4e97fcf3918609db5,
-        type: 2}
-      propertyPath: m_Size.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 61978312471721952, guid: af947d867ed024c4e97fcf3918609db5,
-        type: 2}
-      propertyPath: m_Size.y
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af947d867ed024c4e97fcf3918609db5, type: 2}
   m_IsPrefabAsset: 0
@@ -1786,6 +1786,11 @@ Prefab:
       propertyPath: waypoints.Array.data[1].y
       value: -1.278799
       objectReference: {fileID: 0}
+    - target: {fileID: 114425291304750038, guid: aa585834a12d14a679c527ca67b6be77,
+        type: 2}
+      propertyPath: IDLETIME
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa585834a12d14a679c527ca67b6be77, type: 2}
   m_IsPrefabAsset: 0
@@ -1939,16 +1944,6 @@ Prefab:
     - target: {fileID: 4124332835022008, guid: af947d867ed024c4e97fcf3918609db5, type: 2}
       propertyPath: m_RootOrder
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 61978312471721952, guid: af947d867ed024c4e97fcf3918609db5,
-        type: 2}
-      propertyPath: m_Size.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 61978312471721952, guid: af947d867ed024c4e97fcf3918609db5,
-        type: 2}
-      propertyPath: m_Size.y
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af947d867ed024c4e97fcf3918609db5, type: 2}

@@ -109,6 +109,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
+  IDLETIME: 2
+  patrolDirection: -1
   waypoints:
   - {x: 13.66083, y: -1.278799}
 --- !u!212 &212319923111552306
