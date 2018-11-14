@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ObjectPlacement : MonoBehaviour {
 
@@ -28,8 +29,17 @@ public class ObjectPlacement : MonoBehaviour {
     private bool validPos = false;
     private Vector2 objectSize;
 
-	// Use this for initialization
-	void Start () 
+
+    //limited resources stuff
+    public Text exBarrelRemaining;     public Text waterBarrelRemaining;     public Text rollingBarrelRemaining;
+    public Text tableRemaining;     public int exBarrelNumber = 5;     public int waterBarrelNumber = 5;     public int rollingBarrelNumber = 5;
+    public int tableNumber = 5;     private bool canPlaceEX = true;     private bool canPlaceWater = true;     private bool canPlaceRoll = true;
+    private bool canPlaceTable = true;
+
+
+
+    // Use this for initialization
+    void Start () 
     {
 
 	}
@@ -42,7 +52,14 @@ public class ObjectPlacement : MonoBehaviour {
         ClickToPlace();
 
         SelectItem();
-	}
+
+        if (waterBarrelNumber <= 0)         {             canPlaceWater = false;         }         if (exBarrelNumber <= 0)         {             canPlaceEX = false;         }         if (rollingBarrelNumber <= 0)         {             canPlaceRoll = false;         }
+        if(tableNumber <= 0)
+        {
+            canPlaceTable = false;
+        }
+
+    }
 
     private void SelectItem()
     {
@@ -138,17 +155,15 @@ public class ObjectPlacement : MonoBehaviour {
         {
             switch(selectedObject)
             {
-                case 1:
-                    SpawnObject(explodingBarrel);
-                    break;
-                case 2:
-                    SpawnObject(waterBarrel);
-                    break;
-                case 3:
-                    SpawnObject(rollingBarrel, -1);
-                    break;
+                case 1:                     if (canPlaceEX == true)                     {                         SpawnObject(explodingBarrel);                         exBarrelNumber--;                         exBarrelRemaining.text = exBarrelNumber.ToString();                     }                     break;                 case 2:                     if (canPlaceWater == true)                     {                         SpawnObject(waterBarrel);                         waterBarrelNumber--;                         waterBarrelRemaining.text = waterBarrelNumber.ToString();                     }                     break;                 case 3:                     if (canPlaceRoll == true)                     {                         SpawnObject(rollingBarrel, -1);                         rollingBarrelNumber--;                         rollingBarrelRemaining.text = rollingBarrelNumber.ToString();                     }                     break;
                 case 4:
-                    SpawnObject(chair);
+                    if(canPlaceTable == true)
+                    {
+                        SpawnObject(chair);
+                        tableNumber--;
+                        tableRemaining.text = tableNumber.ToString();
+                    }
+
                     break;
 
             }
@@ -158,7 +173,12 @@ public class ObjectPlacement : MonoBehaviour {
         {
             if(selectedObject == 3)
             {
-                SpawnObject(rollingBarrel, 1);
+                if(canPlaceRoll == true)
+                {
+                    SpawnObject(rollingBarrel, 1);
+                    rollingBarrelNumber--;
+                    rollingBarrelRemaining.text = rollingBarrelNumber.ToString(); 
+                }
             }
         }
     }
