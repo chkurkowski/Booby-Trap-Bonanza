@@ -37,8 +37,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1350382271859888}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.5640888, y: -7.124338, z: -5}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalPosition: {x: -17.74806, y: 0.36, z: -5}
+  m_LocalScale: {x: 3, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -75,7 +75,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.1}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -86,7 +86,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.512, y: 0.512}
+  m_Size: {x: 0.32, y: 0.42}
   m_EdgeRadius: 0
 --- !u!114 &114209476870303256
 MonoBehaviour:
@@ -101,6 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waterPuddle: {fileID: 1208140565913144, guid: 35d5acfd289e1fb4db0f4b5a51dea7d1,
     type: 2}
+  isActive: 0
 --- !u!212 &212219941047207936
 SpriteRenderer:
   m_ObjectHideFlags: 1
