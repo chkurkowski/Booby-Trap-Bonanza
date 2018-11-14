@@ -159,7 +159,7 @@ public class ObjectPlacement : MonoBehaviour {
                 case 4:
                     if(canPlaceTable == true)
                     {
-                        SpawnObject(chair);
+                        SpawnObject(chair, true);
                         tableNumber--;
                         tableRemaining.text = tableNumber.ToString();
                     }
@@ -178,6 +178,15 @@ public class ObjectPlacement : MonoBehaviour {
                     SpawnObject(rollingBarrel, 1);
                     rollingBarrelNumber--;
                     rollingBarrelRemaining.text = rollingBarrelNumber.ToString(); 
+                }
+            }
+            else if(selectedObject == 4)
+            {
+                if(canPlaceTable)
+                {
+                    SpawnObject(chair, false);
+                    tableNumber--;
+                    tableRemaining.text = tableNumber.ToString();
                 }
             }
         }
@@ -204,8 +213,10 @@ public class ObjectPlacement : MonoBehaviour {
         GameObject chairGM = Instantiate(gm, mousePosition, Quaternion.identity);
         if(flipped)
         {
-            //chairGM.transform.localScale = new Vector2(scale, transform.localScale.y);
+            chairGM.transform.localScale = new Vector3(-2.25f, 2.25f, 1);
         }
+        else
+            chairGM.transform.localScale = new Vector3(2.25f, 2.25f, 1);
         selectedObject = 0;
         Destroy(currentObject);
     }
