@@ -1,10 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class ObjectPlacement : MonoBehaviour 
-{
+public class ObjectPlacement : MonoBehaviour {
 
     public GameObject explodingBarrelPreview;
     public GameObject waterBarrelPreview;
@@ -15,17 +13,6 @@ public class ObjectPlacement : MonoBehaviour
     public GameObject rollingBarrel;
     public GameObject chair;
     public Camera cam;
-
-    //limited resources stuff
-    public Text exBarrelRemaining;
-    public Text waterBarrelRemaining;
-    public Text rollingBarrelRemaining;
-    private int exBarrelNumber = 5;
-    private int waterBarrelNumber = 5;
-    private int rollingBarrelNumber = 5;
-    private bool canPlaceEX;
-    private bool canPlaceWater;
-    private bool canPlaceRoll;
 
     /*
      * 1 = explodingBarrel
@@ -41,14 +28,10 @@ public class ObjectPlacement : MonoBehaviour
     private bool validPos = false;
     private Vector2 objectSize;
 
-    public object canpla { get; private set; }
-
-    // Use this for initialization
-    void Start () 
+	// Use this for initialization
+	void Start () 
     {
-        canPlaceEX = true;
-        canPlaceWater = true;
-        canPlaceRoll = true;
+
 	}
 	
 	// Update is called once per frame
@@ -59,20 +42,7 @@ public class ObjectPlacement : MonoBehaviour
         ClickToPlace();
 
         SelectItem();
-
-        if(waterBarrelNumber <=0)
-        {
-            canPlaceWater = false;
-        }
-        if (exBarrelNumber <= 0)
-        {
-            canPlaceEX = false;
-        }
-        if (rollingBarrelNumber <= 0)
-        {
-            canPlaceRoll = false;
-        }
-    }
+	}
 
     private void SelectItem()
     {
@@ -107,12 +77,11 @@ public class ObjectPlacement : MonoBehaviour
        
         selectedObject = s;
 
-        if (selectedObject == 1 && canPlaceEX == true)
+        if (selectedObject == 1)
         {
             GameObject gm = Instantiate(explodingBarrelPreview);
             currentObject = gm;
             objectSize = new Vector2(1.5f, 2.25f);
-
         }
         else if (selectedObject == 2)
         {
@@ -170,28 +139,13 @@ public class ObjectPlacement : MonoBehaviour
             switch(selectedObject)
             {
                 case 1:
-                    if(canPlaceEX == true)
-                    {
-                        SpawnObject(explodingBarrel);
-                        exBarrelNumber--;
-                        exBarrelRemaining.text = exBarrelNumber.ToString();
-                    }
+                    SpawnObject(explodingBarrel);
                     break;
                 case 2:
-                    if(canPlaceWater == true)
-                    {
-                        SpawnObject(waterBarrel);
-                        waterBarrelNumber--;
-                        waterBarrelRemaining.text = waterBarrelNumber.ToString();
-                    }
+                    SpawnObject(waterBarrel);
                     break;
                 case 3:
-                    if(canPlaceRoll == true)
-                    {
-                        SpawnObject(rollingBarrel, -1);
-                        rollingBarrelNumber--;
-                        rollingBarrelRemaining.text = rollingBarrelNumber.ToString();
-                    }
+                    SpawnObject(rollingBarrel, -1);
                     break;
                 case 4:
                     SpawnObject(chair);
