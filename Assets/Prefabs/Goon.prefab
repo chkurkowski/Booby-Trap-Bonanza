@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 70819483505700826}
   - component: {fileID: 50510258097646780}
   - component: {fileID: 114425291304750038}
+  - component: {fileID: 95635087191436268}
   m_Layer: 9
   m_Name: Goon
   m_TagString: Untagged
@@ -37,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1535248373638634}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.27, y: 0.38, z: -0.038008656}
+  m_LocalPosition: {x: 13.660829, y: -1.2787986, z: -0.038008656}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -62,7 +63,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 5
 --- !u!70 &70819483505700826
 CapsuleCollider2D:
   m_ObjectHideFlags: 1
@@ -78,6 +79,24 @@ CapsuleCollider2D:
   m_Offset: {x: -0.00011062622, y: 0}
   m_Size: {x: 0.2012186, y: 0.64}
   m_Direction: 0
+--- !u!95 &95635087191436268
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1535248373638634}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a9526c115174e4268ac2e033bd59e771, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114425291304750038
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -91,9 +110,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   waypoints:
-  - {x: -8.15, y: -2.2}
-  - {x: 0, y: -2.2}
-  - {x: 8.38, y: -2.2}
+  - {x: 13.66083, y: -1.278799}
 --- !u!212 &212319923111552306
 SpriteRenderer:
   m_ObjectHideFlags: 1
