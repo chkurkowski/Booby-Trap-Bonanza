@@ -30,7 +30,7 @@ public class RollingBarrel : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D trig)
     {
-        if(trig.gameObject.layer == 8)
+        if(trig.gameObject.layer == 8 || trig.gameObject.layer == 9)
         {
             Destroy(gameObject);
         }
@@ -38,6 +38,10 @@ public class RollingBarrel : MonoBehaviour
         if (trig.tag == "Ground")
         {
             canMove = true;
+        }
+        if(trig.tag == "Wall")
+        {
+            Destroy(gameObject);
         }
     }
 }

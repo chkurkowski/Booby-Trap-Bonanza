@@ -14,24 +14,35 @@ public class GoonAI : MonoBehaviour {
     }
     public State state;
 
+    public bool move = true;
+
     private bool alive;
 
     private float idleTimer = 0f;
+    [SerializeField]
     private float IDLETIME = 2f;
 
     [SerializeField]
-    private Vector2[] waypoints;
+    private int patrolDirection = -1;
+    public  Vector2[] waypoints;
     private Vector2 target;
     private float speed = 2;
     private int currentWaypoint = 0;
-    private int patrolDirection = -1;
+    private int currentDirection;
+
+    private bool moving = false;
+    private bool burning = false;
+    private bool sliding = false;
+
+    private Animator animatorInfo;
 
 	// Use this for initialization
 	void Start () {
         alive = true;
         state = State.IDLE;
-        RandomizePosition();
-
+        if (move)
+            RandomizePosition();
+        animatorInfo = gameObject.GetComponent<Animator>();
 
         StartCoroutine("FSM");
 	}
@@ -71,6 +82,10 @@ public class GoonAI : MonoBehaviour {
 
     private void Idle()
     {
+        animatorInfo.SetBool("isIdle", true);
+        animatorInfo.SetBool("moveRight", false);
+        animatorInfo.SetBool("moveLeft", false);
+        moving = false;
         idleTimer += Time.deltaTime;
 
         if(idleTimer >= IDLETIME)
@@ -82,26 +97,49 @@ public class GoonAI : MonoBehaviour {
 
     private void Patrol()
     {
-        float distance = Vector2.Distance(transform.position, target);
-        float step = speed * Time.deltaTime;
-
-        //TODO: Instead of this approach, check direction of the next waypoint then have the goon transform.Translate to it.
-        //Set animation here.
-        transform.position = Vector2.MoveTowards(transform.position, target, step);
-
-
-        if(distance < .001f)
+        if (move)
         {
-            if(patrolDirection < 0)
+            float distance = Vector2.Distance(transform.position, target);
+            float dirDist = transform.position.x - target.x;
+            float step = speed * Time.deltaTime;
+            moving = true;
+
+            //TODO Set animation here.
+            transform.position = Vector2.MoveTowards(transform.position, target, step);
+
+
+            if (distance < .001f)
             {
-                DecrementTarget();
+                if (patrolDirection < 0)
+                {
+                    DecrementTarget();
+                }
+                else
+                {
+                    IncrementTarget();
+                }
+                state = State.IDLE;
+
+            }
+
+            if (dirDist < 0)
+            {
+                currentDirection = 1;
+                //animatorInfo.SetBool("moveLeft", false);
+                animatorInfo.SetBool("isIdle", false);
+                animatorInfo.SetBool("moveRight", true);
             }
             else
             {
-                IncrementTarget();
+                currentDirection = -1;
+                //  animatorInfo.SetBool("moveRight", false);
+                animatorInfo.SetBool("isIdle", false);
+                animatorInfo.SetBool("moveLeft", true);
+
             }
-            state = State.IDLE;
+
         }
+
     }
 
     private void Alert()
@@ -111,17 +149,52 @@ public class GoonAI : MonoBehaviour {
 
     private void Burning()
     {
+       // animatorInfo.SetBool("isBurning", true);
+        speed = .1f;
+        Invoke("BurningDeathAnim", 4);
+        burning = true;
 
+        if(currentDirection > 0)
+        {
+            Debug.Log("DId this hApeend");
+            //animatorInfo.SetFloat("speed", 1);
+            animatorInfo.SetBool("moveLeft", false);
+            animatorInfo.SetBool("moveRight", true);
+
+            transform.Translate(Vector3.right * speed);
+        }
+            
+        else
+        {
+            //animatorInfo.SetFloat("speed", -1);
+            animatorInfo.SetBool("moveRight", false);
+            animatorInfo.SetBool("moveLeft", true);
+
+            transform.Translate(-Vector3.right * speed);
+        }
+            
+
+        gameObject.layer = 0;
+        gameObject.tag = "Interactable";
     }
 
     private void Sliding()
     {
+        speed = .08f;
+        sliding = true;
 
+        if (currentDirection > 0)
+            transform.Translate(Vector3.right * speed);
+        else
+            transform.Translate(-Vector3.right * speed);
+
+        gameObject.layer = 0;
+        gameObject.tag = "Interactable";
     }
 
     private void Dying()
     {
-
+       // animatorInfo.SetBool("isKill", true);
     }
 
     /* Other Member Functions to be used */
@@ -163,6 +236,13 @@ public class GoonAI : MonoBehaviour {
         }
     }
 
+    private void BurningDeathAnim()
+    {
+        //TODO burning death anim
+        //animatorInfo.SetBool("isAsh", true);
+       // Destroy(gameObject);
+    }
+
     //private void StayOnGround()
     //{
     //    RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector3.up, 10);
@@ -174,4 +254,104 @@ public class GoonAI : MonoBehaviour {
     //        transform.position = new Vector3(transform.position.x, tempY, transform.position.z);
     //    }
     //}
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+
+        //if (burning || sliding)
+        //{
+
+        //
+    
+            if (col.gameObject.name == "WaterPuddle(Clone)")
+            {
+                //TODO Slide animation
+                animatorInfo.SetBool("isSlip", true);
+                state = State.SLIDING;
+               
+            }
+            else if (col.gameObject.name == "FlameWoosh(Clone)")
+            {
+                //TODO Running on fire animation
+                animatorInfo.SetBool("isBurning", true);
+                state = State.BURNING;
+            }
+            else if (col.gameObject.name == "BarrelExplosion(Clone)")
+            {
+                //TODO Explosion death animation
+                animatorInfo.SetBool("isKill", true);
+            }
+            else if (col.gameObject.name == "ChairLeg(Clone)")
+            {
+                //TODO Chair leg death here
+                animatorInfo.SetBool("isImpale", true);
+            }
+            else if (col.gameObject.name == "Chandelier(Clone)")
+            {
+                //TODO Chandelier death here
+                animatorInfo.SetBool("isCrush", true);
+            }
+            else if (col.gameObject.name == "RollingBarrel(Clone)") 
+            {
+                Debug.Log("I WAAANT TO DIEEE");
+                animatorInfo.SetBool("isKill", true);
+            }
+        }
+
+
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        //Debug.Log("This collision happened");
+        
+            if (burning)
+            {
+                if (col.gameObject.tag == "Wall")
+                {
+                    print("Hit Wall");
+                    if (currentDirection < 0)
+                        currentDirection = 1;
+                    else
+                        currentDirection = -1;
+                }
+            }
+
+            if (sliding)
+            {
+                Destroy(gameObject);
+            }
+      
+            
+            if (col.gameObject.name == "WaterPuddle(Clone)")
+            {
+                //TODO Slide animation
+                animatorInfo.SetBool("isSlip", true);
+                state = State.SLIDING;
+            }
+            else if (col.gameObject.name == "FlameWoosh(Clone)")
+            {
+                //TODO Running on fire animation
+                animatorInfo.SetBool("isBurning", true);
+                state = State.BURNING;
+            }
+            else if (col.gameObject.name == "BarrelExplosion(Clone)")
+            {
+                //TODO Explosion death animation
+                animatorInfo.SetBool("isKill", true);
+            }
+            else if (col.gameObject.name == "ChairLeg(Clone)")
+            {
+                //TODO Chair leg death here
+                animatorInfo.SetBool("isImpale", true);
+            }
+            else if (col.gameObject.name == "Chandelier(Clone)")
+            {
+                //TODO Chandelier death here
+                animatorInfo.SetBool("isCrush", true);
+            }
+            else if (col.gameObject.name == "RollingBarrel(Clone)")
+            {
+                //Debug.Log("I WAAANT TO DIEEE");
+                animatorInfo.SetBool("isKill", true);
+            }
+    }
 }

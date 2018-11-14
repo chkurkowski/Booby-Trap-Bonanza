@@ -9,9 +9,11 @@ public class ObjectPlacement : MonoBehaviour
     public GameObject explodingBarrelPreview;
     public GameObject waterBarrelPreview;
     public GameObject rollingBarrelPreview;
+    public GameObject chairPreview;
     public GameObject explodingBarrel;
     public GameObject waterBarrel;
     public GameObject rollingBarrel;
+    public GameObject chair;
     public Camera cam;
 
     //limited resources stuff
@@ -86,6 +88,10 @@ public class ObjectPlacement : MonoBehaviour
         {
             SelectItem(3);
         }
+        if (Input.GetKey(KeyCode.Alpha4))
+        {
+            SelectItem(4);
+        }
     }
 
     private void GetMousePosition()
@@ -112,12 +118,19 @@ public class ObjectPlacement : MonoBehaviour
         {
             GameObject gm = Instantiate(waterBarrelPreview);
             currentObject = gm;
-            objectSize = new Vector2(1f, 1f);
+            objectSize = new Vector2(1f, 2.4f);
         }
         else if (selectedObject == 3)
         {
             GameObject gm = Instantiate(rollingBarrelPreview);
             currentObject = gm;
+            objectSize = new Vector2(1.5f, 1.5f);
+        }
+        else if (selectedObject == 4)
+        {
+            GameObject gm = Instantiate(chairPreview);
+            currentObject = gm;
+            objectSize = new Vector2(1.45f, 1.5f);
         }
         else
         {
@@ -180,6 +193,9 @@ public class ObjectPlacement : MonoBehaviour
                         rollingBarrelRemaining.text = rollingBarrelNumber.ToString();
                     }
                     break;
+                case 4:
+                    SpawnObject(chair);
+                    break;
 
             }
         }
@@ -205,6 +221,17 @@ public class ObjectPlacement : MonoBehaviour
     {
         GameObject barrel = Instantiate(gm, mousePosition, Quaternion.identity);
         barrel.GetComponent<RollingBarrel>().rollDirection = rolldirection;
+        selectedObject = 0;
+        Destroy(currentObject);
+    }
+
+    private void SpawnObject(GameObject gm, bool flipped)
+    {
+        GameObject chairGM = Instantiate(gm, mousePosition, Quaternion.identity);
+        if(flipped)
+        {
+            //chairGM.transform.localScale = new Vector2(scale, transform.localScale.y);
+        }
         selectedObject = 0;
         Destroy(currentObject);
     }

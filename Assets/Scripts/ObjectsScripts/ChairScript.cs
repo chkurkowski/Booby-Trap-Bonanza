@@ -33,4 +33,15 @@ public class ChairScript : MonoBehaviour {
     }
 
 
+
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+
+        if (col.gameObject.tag == "Interactable" && col.gameObject.name != "WaterPuddle(Clone)")
+        {
+            isActive = true;
+        }
+
+    }
+
 }
