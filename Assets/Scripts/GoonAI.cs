@@ -151,12 +151,11 @@ public class GoonAI : MonoBehaviour {
     {
        // animatorInfo.SetBool("isBurning", true);
         speed = .1f;
-        Invoke("BurningDeathAnim", 4);
+        Invoke("BurningDeath", 4);
         burning = true;
 
         if(currentDirection > 0)
         {
-            Debug.Log("DId this hApeend");
             //animatorInfo.SetFloat("speed", 1);
             animatorInfo.SetBool("moveLeft", false);
             animatorInfo.SetBool("moveRight", true);
@@ -236,65 +235,44 @@ public class GoonAI : MonoBehaviour {
         }
     }
 
-    private void BurningDeathAnim()
+    private void BurningDeath()
     {
-        //TODO burning death anim
-        //animatorInfo.SetBool("isAsh", true);
-       // Destroy(gameObject);
+        Destroy(gameObject);
     }
-
-    //private void StayOnGround()
-    //{
-    //    RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector3.up, 10);
-
-    //    if(hit.collider.tag == "Ground")
-    //    {
-    //        float groundDist = hit.distance;
-    //        float tempY = hit.distance - transform.GetComponent<Collider2D>().bounds.extents.y;
-    //        transform.position = new Vector3(transform.position.x, tempY, transform.position.z);
-    //    }
-    //}
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-
-        //if (burning || sliding)
-        //{
-
-        //
     
             if (col.gameObject.name == "WaterPuddle(Clone)")
             {
-                //TODO Slide animation
                 animatorInfo.SetBool("isSlip", true);
                 state = State.SLIDING;
                
             }
             else if (col.gameObject.name == "FlameWoosh(Clone)")
             {
-                //TODO Running on fire animation
                 animatorInfo.SetBool("isBurning", true);
                 state = State.BURNING;
             }
             else if (col.gameObject.name == "BarrelExplosion(Clone)")
             {
-                //TODO Explosion death animation
                 animatorInfo.SetBool("isKill", true);
+                state = State.DYING;
             }
             else if (col.gameObject.name == "ChairLeg(Clone)")
             {
-                //TODO Chair leg death here
                 animatorInfo.SetBool("isImpale", true);
+                state = State.DYING;
             }
             else if (col.gameObject.name == "Chandelier(Clone)")
             {
-                //TODO Chandelier death here
                 animatorInfo.SetBool("isCrush", true);
+                state = State.DYING;
             }
             else if (col.gameObject.name == "RollingBarrel(Clone)") 
             {
-                Debug.Log("I WAAANT TO DIEEE");
                 animatorInfo.SetBool("isKill", true);
+                state = State.DYING;
             }
         }
 
@@ -323,35 +301,33 @@ public class GoonAI : MonoBehaviour {
             
             if (col.gameObject.name == "WaterPuddle(Clone)")
             {
-                //TODO Slide animation
                 animatorInfo.SetBool("isSlip", true);
                 state = State.SLIDING;
             }
             else if (col.gameObject.name == "FlameWoosh(Clone)")
             {
-                //TODO Running on fire animation
                 animatorInfo.SetBool("isBurning", true);
                 state = State.BURNING;
             }
             else if (col.gameObject.name == "BarrelExplosion(Clone)")
             {
-                //TODO Explosion death animation
                 animatorInfo.SetBool("isKill", true);
+                state = State.DYING;
             }
             else if (col.gameObject.name == "ChairLeg(Clone)")
             {
-                //TODO Chair leg death here
                 animatorInfo.SetBool("isImpale", true);
+                state = State.DYING;
             }
             else if (col.gameObject.name == "Chandelier(Clone)")
             {
-                //TODO Chandelier death here
                 animatorInfo.SetBool("isCrush", true);
+                state = State.DYING;
             }
             else if (col.gameObject.name == "RollingBarrel(Clone)")
             {
-                //Debug.Log("I WAAANT TO DIEEE");
                 animatorInfo.SetBool("isKill", true);
+                state = State.DYING;
             }
     }
 }
