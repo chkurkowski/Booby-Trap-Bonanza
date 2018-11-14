@@ -19,11 +19,12 @@ public class GoonAI : MonoBehaviour {
     private float idleTimer = 0f;
     private float IDLETIME = 2f;
 
+    [SerializeField]
+    private int patrolDirection = -1;
     public  Vector2[] waypoints;
     private Vector2 target;
     private float speed = 2;
     private int currentWaypoint = 0;
-    private int patrolDirection = -1;
     private int currentDirection;
 
     private bool moving = false;
@@ -167,12 +168,20 @@ public class GoonAI : MonoBehaviour {
 
         gameObject.layer = 0;
         gameObject.tag = "Interactable";
-
     }
 
     private void Sliding()
     {
-       // animatorInfo.SetBool("isSlip", true);
+        speed = .08f;
+        sliding = true;
+
+        if (currentDirection > 0)
+            transform.Translate(Vector3.right * speed);
+        else
+            transform.Translate(-Vector3.right * speed);
+
+        gameObject.layer = 0;
+        gameObject.tag = "Interactable";
     }
 
     private void Dying()
@@ -276,8 +285,8 @@ public class GoonAI : MonoBehaviour {
             }
             else if (col.gameObject.name == "RollingBarrel(Clone)") 
             {
-            Debug.Log("I WAAANT TO DIEEE");
-            animatorInfo.SetBool("isKill", true);
+                Debug.Log("I WAAANT TO DIEEE");
+                animatorInfo.SetBool("isKill", true);
             }
         }
 
@@ -286,12 +295,30 @@ public class GoonAI : MonoBehaviour {
     {
         Debug.Log("This collision happened");
         
+            if (burning)
+            {
+                print("Hit");
+                if (col.gameObject.tag == "Wall")
+                {
+                    print("Hit Wall");
+                    if (currentDirection < 0)
+                        currentDirection = 1;
+                    else
+                        currentDirection = -1;
+                }
+            }
+
+            if (sliding)
+            {
+                Destroy(gameObject);
+            }
+      
+            
             if (col.gameObject.name == "WaterPuddle(Clone)")
             {
                 //TODO Slide animation
                 animatorInfo.SetBool("isSlip", true);
                 state = State.SLIDING;
-
             }
             else if (col.gameObject.name == "FlameWoosh(Clone)")
             {
@@ -319,6 +346,5 @@ public class GoonAI : MonoBehaviour {
                 Debug.Log("I WAAANT TO DIEEE");
                 animatorInfo.SetBool("isKill", true);
             }
-        
     }
 }
