@@ -15,6 +15,10 @@ public class ChairLegScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        if (direction < 0)
+            gameObject.GetComponent<SpriteRenderer>().flipX = false;
+        else
+            gameObject.GetComponent<SpriteRenderer>().flipX = true;
         chairLegRigidBody.velocity = Vector3.left * chairLegSpeed * direction * Time.deltaTime;
 	}
 
