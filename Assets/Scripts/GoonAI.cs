@@ -14,6 +14,8 @@ public class GoonAI : MonoBehaviour {
     }
     public State state;
 
+    public bool move = true;
+
     private bool alive;
 
     private float idleTimer = 0f;
@@ -38,7 +40,8 @@ public class GoonAI : MonoBehaviour {
 	void Start () {
         alive = true;
         state = State.IDLE;
-        RandomizePosition();
+        if (move)
+            RandomizePosition();
         animatorInfo = gameObject.GetComponent<Animator>();
 
         StartCoroutine("FSM");
@@ -94,44 +97,48 @@ public class GoonAI : MonoBehaviour {
 
     private void Patrol()
     {
-        float distance = Vector2.Distance(transform.position, target);
-        float dirDist = transform.position.x - target.x;
-        float step = speed * Time.deltaTime;
-        moving = true;
-
-        //TODO Set animation here.
-        transform.position = Vector2.MoveTowards(transform.position, target, step);
-
-
-        if(distance < .001f)
+        if (move)
         {
-            if(patrolDirection < 0)
+            float distance = Vector2.Distance(transform.position, target);
+            float dirDist = transform.position.x - target.x;
+            float step = speed * Time.deltaTime;
+            moving = true;
+
+            //TODO Set animation here.
+            transform.position = Vector2.MoveTowards(transform.position, target, step);
+
+
+            if (distance < .001f)
             {
-                DecrementTarget();
+                if (patrolDirection < 0)
+                {
+                    DecrementTarget();
+                }
+                else
+                {
+                    IncrementTarget();
+                }
+                state = State.IDLE;
+
+            }
+
+            if (dirDist < 0)
+            {
+                currentDirection = 1;
+                //animatorInfo.SetBool("moveLeft", false);
+                animatorInfo.SetBool("isIdle", false);
+                animatorInfo.SetBool("moveRight", true);
             }
             else
             {
-                IncrementTarget();
-            }
-            state = State.IDLE;
-        }
+                currentDirection = -1;
+                //  animatorInfo.SetBool("moveRight", false);
+                animatorInfo.SetBool("isIdle", false);
+                animatorInfo.SetBool("moveLeft", true);
 
-        if (dirDist < 0)
-        {
-            currentDirection = 1;
-            //animatorInfo.SetBool("moveLeft", false);
-            animatorInfo.SetBool("isIdle", false);
-            animatorInfo.SetBool("moveRight", true);
+            }
+
         }
-        else
-        {
-            currentDirection = -1;
-            //  animatorInfo.SetBool("moveRight", false);
-            animatorInfo.SetBool("isIdle", false);
-            animatorInfo.SetBool("moveLeft", true);
-          
-        }
-           
 
     }
 
