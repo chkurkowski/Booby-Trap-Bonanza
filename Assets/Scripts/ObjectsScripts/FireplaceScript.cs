@@ -7,18 +7,13 @@ public class FireplaceScript : MonoBehaviour {
     private bool isActive;
     public float wooshSpawnRate = .25f;
     public float wooshSpawnTime = 1f;
-   // public int wooshAmount = 10;
+    private ScoreBarScripts scoreBarInfo;
+    // Use this for initialization
 
-    //private float xOffset;
-    //public float xOffsetAmount;
-    
 
-   // private Vector3 wooshOffset;
-    //private int sideFlip = 1;
-	// Use this for initialization
-	void Start ()
+    void Start()
     {
-       // wooshOffset = new Vector3(xOffset, transform.position.y, transform.position.z);
+        scoreBarInfo = GameObject.Find("ScoreBar").GetComponent<ScoreBarScripts>();
     }
 
     // Update is called once per frame
@@ -53,6 +48,7 @@ public class FireplaceScript : MonoBehaviour {
         if (col.gameObject.tag == "Interactable" && col.gameObject.name != "WaterPuddle(Clone)" && col.gameObject.name != "FlameWoosh(Clone)")
         {
             isActive = true;
+            scoreBarInfo.IncreaseScoreBar();
         }
     }
 }

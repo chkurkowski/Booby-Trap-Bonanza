@@ -5,13 +5,17 @@ using UnityEngine;
 public class WaterBucketScript : MonoBehaviour {
     public GameObject waterPuddle;
     public bool isActive;
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    private ScoreBarScripts scoreBarInfo;
+    // Use this for initialization
+
+
+    void Start()
+    {
+        scoreBarInfo = GameObject.Find("ScoreBar").GetComponent<ScoreBarScripts>();
+    }
+
+    // Update is called once per frame
+    void Update () {
 		if(isActive)
         {
             isActive = false;
@@ -29,7 +33,8 @@ public class WaterBucketScript : MonoBehaviour {
         {
             //Debug.Log("Chandelier detected");
             isActive = true;
-            
+            scoreBarInfo.IncreaseScoreBar();
+
         }
 
     }

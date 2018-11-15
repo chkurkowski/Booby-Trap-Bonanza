@@ -9,11 +9,15 @@ public class RollingBarrel : MonoBehaviour
     public float rollSpeed = 15f;
     private Rigidbody2D barrelRigidBody;
     private bool canMove = false;
-
+    private ScoreBarScripts scoreBarInfo;
     // Use this for initialization
+
+
     void Start()
     {
-        barrelRigidBody = gameObject.GetComponent<Rigidbody2D>();
+        scoreBarInfo = GameObject.Find("ScoreBar").GetComponent<ScoreBarScripts>();
+    
+    barrelRigidBody = gameObject.GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -33,6 +37,7 @@ public class RollingBarrel : MonoBehaviour
         if(trig.gameObject.layer == 8 || trig.gameObject.layer == 9)
         {
             Destroy(gameObject);
+            scoreBarInfo.IncreaseScoreBar();
         }
 
         if (trig.tag == "Ground")
