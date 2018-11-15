@@ -237,13 +237,19 @@ public class GoonAI : MonoBehaviour {
 
     private void BurningDeath()
     {
-        Destroy(gameObject);
+        animatorInfo.SetBool("isAsh", true);
+       // Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-    
-            if (col.gameObject.name == "WaterPuddle(Clone)")
+        if ((sliding && col.gameObject.layer == 8) || (sliding && col.gameObject.tag == "Wall"))
+        {
+            animatorInfo.SetBool("isKill", true);
+            state = State.DYING;
+        }
+
+        if (col.gameObject.name == "WaterPuddle(Clone)")
             {
                 animatorInfo.SetBool("isSlip", true);
                 state = State.SLIDING;
@@ -264,7 +270,7 @@ public class GoonAI : MonoBehaviour {
                 animatorInfo.SetBool("isImpale", true);
                 state = State.DYING;
             }
-            else if (col.gameObject.name == "Chandelier(Clone)")
+            else if (col.gameObject.name == "Chandelier")
             {
                 animatorInfo.SetBool("isCrush", true);
                 state = State.DYING;
@@ -293,8 +299,9 @@ public class GoonAI : MonoBehaviour {
                 }
             }
 
-            if (sliding)
+            if ((sliding && col.gameObject.layer == 8) || (sliding && col.gameObject.tag == "Wall"))
             {
+            Debug.Log("Ummm");
                 Destroy(gameObject);
             }
       
@@ -319,7 +326,7 @@ public class GoonAI : MonoBehaviour {
                 animatorInfo.SetBool("isImpale", true);
                 state = State.DYING;
             }
-            else if (col.gameObject.name == "Chandelier(Clone)")
+            else if (col.gameObject.name == "Chandelier")
             {
                 animatorInfo.SetBool("isCrush", true);
                 state = State.DYING;
@@ -330,4 +337,6 @@ public class GoonAI : MonoBehaviour {
                 state = State.DYING;
             }
     }
+
+
 }

@@ -21,9 +21,10 @@ public class ScoreBarScripts : MonoBehaviour
 		if(scoreBarImage.fillAmount >= 1)
         {
             scoreBarImage.fillAmount = 0;
-            scoreBarImage.color = new Color(Random.Range(50, 155), Random.Range(50, 155), Random.Range(50, 155));
+            scoreBarImage.color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
         }
-        scoreBarImage.color = new Color(60, 60, 60);
+        
+        Debug.Log("ColorChange should have happened.");
 
     }
 
