@@ -247,7 +247,7 @@ GameObject:
   - component: {fileID: 168666888}
   m_Layer: 0
   m_Name: Wall
-  m_TagString: Ground
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -330,8 +330,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 168666887}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.35, y: -10.35, z: -0.038008656}
-  m_LocalScale: {x: 3.4064298, y: 5.0032377, z: 0.95427}
+  m_LocalPosition: {x: -9.79, y: -0.13, z: -0.038008656}
+  m_LocalScale: {x: 3.4064298, y: 13.128496, z: 0.95427}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
@@ -446,7 +446,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -512,6 +512,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4597754274902566, guid: fbead39f458b23441b76b785bab2ef56, type: 2}
       propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 61342998774533624, guid: fbead39f458b23441b76b785bab2ef56,
+        type: 2}
+      propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -653,17 +658,13 @@ Prefab:
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1535248373638634, guid: aa585834a12d14a679c527ca67b6be77, type: 2}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 50510258097646780, guid: aa585834a12d14a679c527ca67b6be77,
-        type: 2}
-      propertyPath: m_GravityScale
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1535248373638634, guid: aa585834a12d14a679c527ca67b6be77, type: 2}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 114425291304750038, guid: aa585834a12d14a679c527ca67b6be77,
+        type: 2}
+      propertyPath: patrolDirection
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa585834a12d14a679c527ca67b6be77, type: 2}
