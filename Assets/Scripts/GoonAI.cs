@@ -243,8 +243,13 @@ public class GoonAI : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-    
-            if (col.gameObject.name == "WaterPuddle(Clone)")
+        if ((sliding && col.gameObject.layer == 8) || (sliding && col.gameObject.tag == "Wall"))
+        {
+            animatorInfo.SetBool("isKill", true);
+            state = State.DYING;
+        }
+
+        if (col.gameObject.name == "WaterPuddle(Clone)")
             {
                 animatorInfo.SetBool("isSlip", true);
                 state = State.SLIDING;
@@ -294,8 +299,9 @@ public class GoonAI : MonoBehaviour {
                 }
             }
 
-            if (sliding)
+            if ((sliding && col.gameObject.layer == 8) || (sliding && col.gameObject.tag == "Wall"))
             {
+            Debug.Log("Ummm");
                 Destroy(gameObject);
             }
       
@@ -331,4 +337,6 @@ public class GoonAI : MonoBehaviour {
                 state = State.DYING;
             }
     }
+
+
 }
