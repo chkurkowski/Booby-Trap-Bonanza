@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212372221155799072}
   - component: {fileID: 61221071280016414}
   - component: {fileID: 50783113950206128}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: WaterPuddle
   m_TagString: Interactable
   m_Icon: {fileID: 0}

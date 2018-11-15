@@ -1589,7 +1589,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1722622206766824, guid: bdfee9988b958c548b7ef8f81c72a3f3, type: 2}
       propertyPath: m_Name
-      value: Chandelier (1)
+      value: Chandelier
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bdfee9988b958c548b7ef8f81c72a3f3, type: 2}
