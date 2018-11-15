@@ -902,6 +902,26 @@ Prefab:
       propertyPath: tableRemaining
       value: 
       objectReference: {fileID: 2051814088}
+    - target: {fileID: 114059014486819518, guid: bc1a8c7dca8ff4fd08e81a00fca33e97,
+        type: 2}
+      propertyPath: rollingBarrelNumber
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114059014486819518, guid: bc1a8c7dca8ff4fd08e81a00fca33e97,
+        type: 2}
+      propertyPath: waterBarrelNumber
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114059014486819518, guid: bc1a8c7dca8ff4fd08e81a00fca33e97,
+        type: 2}
+      propertyPath: tableNumber
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114059014486819518, guid: bc1a8c7dca8ff4fd08e81a00fca33e97,
+        type: 2}
+      propertyPath: exBarrelNumber
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc1a8c7dca8ff4fd08e81a00fca33e97, type: 2}
   m_IsPrefabAsset: 0
@@ -1410,9 +1430,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '5
-
-'
+  m_Text: 2
 --- !u!222 &821251497
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2315,9 +2333,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '5
-
-'
+  m_Text: 3
 --- !u!222 &1409807726
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3252,9 +3268,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '5
-
-'
+  m_Text: 4
 --- !u!222 &1666526530
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3959,9 +3973,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '5
-
-'
+  m_Text: 3
 --- !u!222 &2051814089
 CanvasRenderer:
   m_ObjectHideFlags: 0
