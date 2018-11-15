@@ -237,7 +237,8 @@ public class GoonAI : MonoBehaviour {
 
     private void BurningDeath()
     {
-        Destroy(gameObject);
+        animatorInfo.SetBool("isAsh", true);
+       // Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -264,7 +265,7 @@ public class GoonAI : MonoBehaviour {
                 animatorInfo.SetBool("isImpale", true);
                 state = State.DYING;
             }
-            else if (col.gameObject.name == "Chandelier(Clone)")
+            else if (col.gameObject.name == "Chandelier")
             {
                 animatorInfo.SetBool("isCrush", true);
                 state = State.DYING;
@@ -319,7 +320,7 @@ public class GoonAI : MonoBehaviour {
                 animatorInfo.SetBool("isImpale", true);
                 state = State.DYING;
             }
-            else if (col.gameObject.name == "Chandelier(Clone)")
+            else if (col.gameObject.name == "Chandelier")
             {
                 animatorInfo.SetBool("isCrush", true);
                 state = State.DYING;
