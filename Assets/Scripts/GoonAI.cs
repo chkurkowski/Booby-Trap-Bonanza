@@ -16,7 +16,7 @@ public class GoonAI : MonoBehaviour {
 
     public bool move = true;
 
-    private bool alive;
+    public bool alive;
 
     private float idleTimer = 0f;
     [SerializeField]
@@ -193,7 +193,8 @@ public class GoonAI : MonoBehaviour {
 
     private void Dying()
     {
-       // animatorInfo.SetBool("isKill", true);
+        alive = false;
+        print(alive);
     }
 
     /* Other Member Functions to be used */
@@ -238,7 +239,7 @@ public class GoonAI : MonoBehaviour {
     private void BurningDeath()
     {
         animatorInfo.SetBool("isAsh", true);
-       // Destroy(gameObject);
+        state = State.DYING;
     }
 
     private void OnTriggerEnter2D(Collider2D col)

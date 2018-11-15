@@ -4,20 +4,28 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class TutorialLevelManagerScript : MonoBehaviour {
-    public GameObject triggerGoon;
+
+    public GoonAI triggerGoon;
+    private bool flag = false;
 
 	// Use this for initialization
 	void Start ()
     {
-		
+
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
-        if (triggerGoon == null)
+        if (!triggerGoon.alive && !flag)
         {
-            SceneManager.LoadScene("ExampleLevel");
+            flag = true;
+            Invoke("NextLevel", 1);
         }
 	}
+
+    private void NextLevel()
+    {
+        SceneManager.LoadScene("ExampleLevel");
+    }
 }
