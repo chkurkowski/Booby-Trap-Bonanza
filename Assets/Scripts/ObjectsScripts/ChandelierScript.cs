@@ -5,9 +5,13 @@ using UnityEngine;
 public class ChandelierScript : MonoBehaviour {
     public bool isActive;
     private Rigidbody2D chandelierRigidBody;
-	// Use this for initialization
-	void Start ()
+   
+    // Use this for initialization
+
+
+    void Start()
     {
+       
         chandelierRigidBody = gameObject.GetComponent<Rigidbody2D>();	
 	}
 	

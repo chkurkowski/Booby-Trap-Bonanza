@@ -5,13 +5,17 @@ using UnityEngine;
 public class ExplosiveBarrelScript : MonoBehaviour {
     public GameObject barrelExplosion;
     private bool isActive;
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update ()
+    private ScoreBarScripts scoreBarInfo;
+    // Use this for initialization
+
+
+    void Start()
+    {
+        scoreBarInfo = GameObject.Find("ScoreBar").GetComponent<ScoreBarScripts>();
+    }
+
+    // Update is called once per frame
+    void Update ()
     {
         if (isActive)
         {
@@ -28,6 +32,7 @@ public class ExplosiveBarrelScript : MonoBehaviour {
         if (col.gameObject.tag == "Interactable" && col.gameObject.name != "WaterPuddle(Clone)")
         {
             isActive = true;
+            scoreBarInfo.IncreaseScoreBar();
         }
     }
 
@@ -36,6 +41,7 @@ public class ExplosiveBarrelScript : MonoBehaviour {
         if (col.gameObject.tag == "Interactable" && col.gameObject.name != "WaterPuddle(Clone)")
         {
             isActive = true;
+            scoreBarInfo.IncreaseScoreBar();
         }
     }
 

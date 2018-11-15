@@ -6,14 +6,17 @@ public class ChandelierSpoolScript : MonoBehaviour {
     public GameObject chandelier;
     public GameObject chandelierRope;
     private bool isActive;
+    private ScoreBarScripts scoreBarInfo;
     // Use this for initialization
-    void Start ()
+
+
+    void Start()
     {
-		
-	}
-	
-	// Update is called once per frame
-	void Update ()
+        scoreBarInfo = GameObject.Find("ScoreBar").GetComponent<ScoreBarScripts>();
+    }
+
+    // Update is called once per frame
+    void Update ()
     {
         if (isActive)
         {
@@ -32,6 +35,7 @@ public class ChandelierSpoolScript : MonoBehaviour {
         if (col.gameObject.tag == "Interactable" && col.gameObject.name != "WaterPuddle(Clone)")
         {
             isActive = true;
+            scoreBarInfo.IncreaseScoreBar();
         }
 
     }

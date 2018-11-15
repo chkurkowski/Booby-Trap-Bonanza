@@ -5,10 +5,16 @@ using UnityEngine;
 public class ChairScript : MonoBehaviour {
     public GameObject chairLeg;
     private bool isActive;
+    private ScoreBarScripts scoreBarInfo;
     // Use this for initialization
-	
-	// Update is called once per frame
-	void Update ()
+
+
+    void Start()
+    {
+        scoreBarInfo = GameObject.Find("ScoreBar").GetComponent<ScoreBarScripts>();  
+    }
+    // Update is called once per frame
+    void Update ()
     {
         if(isActive)
         {
@@ -28,6 +34,7 @@ public class ChairScript : MonoBehaviour {
         if (col.gameObject.tag == "Interactable" && col.gameObject.name != "WaterPuddle(Clone)")
         {
             isActive = true;
+            scoreBarInfo.IncreaseScoreBar();
         }
 
     }
@@ -40,6 +47,7 @@ public class ChairScript : MonoBehaviour {
         if (col.gameObject.tag == "Interactable" && col.gameObject.name != "WaterPuddle(Clone)")
         {
             isActive = true;
+            scoreBarInfo.IncreaseScoreBar();
         }
 
     }
