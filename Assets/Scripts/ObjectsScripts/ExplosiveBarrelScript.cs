@@ -6,6 +6,8 @@ public class ExplosiveBarrelScript : MonoBehaviour {
     public GameObject barrelExplosion;
     private bool isActive;
     private ScoreBarScripts scoreBarInfo;
+    [Range(0, 1)]
+    public float scoreIncreaseAmount;
     // Use this for initialization
 
 
@@ -32,7 +34,7 @@ public class ExplosiveBarrelScript : MonoBehaviour {
         if (col.gameObject.tag == "Interactable" && col.gameObject.name != "WaterPuddle(Clone)")
         {
             isActive = true;
-            scoreBarInfo.IncreaseScoreBar();
+            scoreBarInfo.IncreaseScoreBar(scoreIncreaseAmount);
         }
     }
 
@@ -41,7 +43,7 @@ public class ExplosiveBarrelScript : MonoBehaviour {
         if (col.gameObject.tag == "Interactable" && col.gameObject.name != "WaterPuddle(Clone)")
         {
             isActive = true;
-            scoreBarInfo.IncreaseScoreBar();
+            scoreBarInfo.IncreaseScoreBar(scoreIncreaseAmount);
         }
     }
 

@@ -10,6 +10,8 @@ public class RollingBarrel : MonoBehaviour
     private Rigidbody2D barrelRigidBody;
     private bool canMove = false;
     private ScoreBarScripts scoreBarInfo;
+    [Range(0, 1)]
+    public float scoreIncreaseAmount;
     // Use this for initialization
 
 
@@ -37,7 +39,7 @@ public class RollingBarrel : MonoBehaviour
         if(trig.gameObject.layer == 8 || trig.gameObject.layer == 9)
         {
             Destroy(gameObject);
-            scoreBarInfo.IncreaseScoreBar();
+            scoreBarInfo.IncreaseScoreBar(scoreIncreaseAmount);
         }
 
         if (trig.tag == "Ground")

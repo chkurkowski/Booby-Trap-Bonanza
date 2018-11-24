@@ -6,6 +6,8 @@ public class WaterBucketScript : MonoBehaviour {
     public GameObject waterPuddle;
     public bool isActive;
     private ScoreBarScripts scoreBarInfo;
+    [Range(0, 1)]
+    public float scoreIncreaseAmount;
     // Use this for initialization
 
 
@@ -33,7 +35,7 @@ public class WaterBucketScript : MonoBehaviour {
         {
             //Debug.Log("Chandelier detected");
             isActive = true;
-            scoreBarInfo.IncreaseScoreBar();
+            scoreBarInfo.IncreaseScoreBar(scoreIncreaseAmount);
 
         }
 
@@ -46,7 +48,7 @@ public class WaterBucketScript : MonoBehaviour {
         {
             //Debug.Log("Chandelier detected");
             isActive = true;
-            scoreBarInfo.IncreaseScoreBar();
+            scoreBarInfo.IncreaseScoreBar(scoreIncreaseAmount);
 
         }
 

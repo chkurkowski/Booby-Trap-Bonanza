@@ -7,6 +7,8 @@ public class ChandelierSpoolScript : MonoBehaviour {
     public GameObject chandelierRope;
     private bool isActive;
     private ScoreBarScripts scoreBarInfo;
+    [Range(0, 1)]
+    public float scoreIncreaseAmount;
     // Use this for initialization
 
 
@@ -35,7 +37,7 @@ public class ChandelierSpoolScript : MonoBehaviour {
         if (col.gameObject.tag == "Interactable" && col.gameObject.name != "WaterPuddle(Clone)")
         {
             isActive = true;
-            scoreBarInfo.IncreaseScoreBar();
+            scoreBarInfo.IncreaseScoreBar(scoreIncreaseAmount);
         }
 
     }
