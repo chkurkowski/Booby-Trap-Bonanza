@@ -8,6 +8,8 @@ public class FireplaceScript : MonoBehaviour {
     public float wooshSpawnRate = .25f;
     public float wooshSpawnTime = 1f;
     private ScoreBarScripts scoreBarInfo;
+    [Range(0, 1)]
+    public float scoreIncreaseAmount;
     // Use this for initialization
 
 
@@ -48,7 +50,7 @@ public class FireplaceScript : MonoBehaviour {
         if (col.gameObject.tag == "Interactable" && col.gameObject.name != "WaterPuddle(Clone)" && col.gameObject.name != "FlameWoosh(Clone)")
         {
             isActive = true;
-            scoreBarInfo.IncreaseScoreBar();
+            scoreBarInfo.IncreaseScoreBar(scoreIncreaseAmount);
         }
     }
 }
