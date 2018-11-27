@@ -126,6 +126,7 @@ public class GoonAI : MonoBehaviour {
             {
                 currentDirection = 1;
                 //animatorInfo.SetBool("moveLeft", false);
+                //gameObject.GetComponent<SpriteRenderer>().flipX = false;
                 animatorInfo.SetBool("isIdle", false);
                 animatorInfo.SetBool("moveRight", true);
             }
@@ -133,6 +134,7 @@ public class GoonAI : MonoBehaviour {
             {
                 currentDirection = -1;
                 //  animatorInfo.SetBool("moveRight", false);
+                //gameObject.GetComponent<SpriteRenderer>().flipX = true;
                 animatorInfo.SetBool("isIdle", false);
                 animatorInfo.SetBool("moveLeft", true);
 
