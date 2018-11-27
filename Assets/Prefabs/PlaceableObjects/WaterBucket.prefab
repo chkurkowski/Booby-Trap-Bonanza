@@ -102,6 +102,7 @@ MonoBehaviour:
   waterPuddle: {fileID: 1208140565913144, guid: 35d5acfd289e1fb4db0f4b5a51dea7d1,
     type: 2}
   isActive: 0
+  scoreIncreaseAmount: 0.2
 --- !u!212 &212219941047207936
 SpriteRenderer:
   m_ObjectHideFlags: 1

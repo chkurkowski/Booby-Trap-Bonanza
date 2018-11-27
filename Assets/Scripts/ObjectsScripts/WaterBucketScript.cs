@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaterBucketScript : MonoBehaviour {
+public class WaterBucketScript : ObjectsScript
+{
     public GameObject waterPuddle;
-    public bool isActive;
+    
     private ScoreBarScripts scoreBarInfo;
     [Range(0, 1)]
     public float scoreIncreaseAmount;

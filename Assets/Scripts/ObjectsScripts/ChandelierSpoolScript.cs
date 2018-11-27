@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChandelierSpoolScript : MonoBehaviour {
+public class ChandelierSpoolScript : ObjectsScript
+{
     public GameObject chandelier;
     public GameObject chandelierRope;
-    private bool isActive;
+   
     private ScoreBarScripts scoreBarInfo;
     [Range(0, 1)]
     public float scoreIncreaseAmount;

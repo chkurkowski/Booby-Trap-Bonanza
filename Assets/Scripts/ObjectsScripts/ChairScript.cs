@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChairScript : MonoBehaviour {
+public class ChairScript : ObjectsScript {
     public GameObject chairLeg;
-    private bool isActive;
     private ScoreBarScripts scoreBarInfo;
     [Range(0, 1)]
     public float scoreIncreaseAmount;

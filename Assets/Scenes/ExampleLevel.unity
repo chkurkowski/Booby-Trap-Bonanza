@@ -1012,22 +1012,22 @@ Prefab:
     - target: {fileID: 114059014486819518, guid: bc1a8c7dca8ff4fd08e81a00fca33e97,
         type: 2}
       propertyPath: rollingBarrelNumber
-      value: 2
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 114059014486819518, guid: bc1a8c7dca8ff4fd08e81a00fca33e97,
         type: 2}
       propertyPath: waterBarrelNumber
-      value: 3
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 114059014486819518, guid: bc1a8c7dca8ff4fd08e81a00fca33e97,
         type: 2}
       propertyPath: tableNumber
-      value: 3
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 114059014486819518, guid: bc1a8c7dca8ff4fd08e81a00fca33e97,
         type: 2}
       propertyPath: exBarrelNumber
-      value: 4
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 114059014486819518, guid: bc1a8c7dca8ff4fd08e81a00fca33e97,
         type: 2}

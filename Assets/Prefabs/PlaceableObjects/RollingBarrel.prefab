@@ -126,6 +126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rollDirection: -1
   rollSpeed: 150
+  scoreIncreaseAmount: 0.2
 --- !u!212 &212203511148331598
 SpriteRenderer:
   m_ObjectHideFlags: 1
