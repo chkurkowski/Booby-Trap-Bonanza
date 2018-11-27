@@ -36,12 +36,22 @@ public class ObjectPlacement : MonoBehaviour {
     public int tableNumber = 5;     private bool canPlaceEX = true;     private bool canPlaceWater = true;     private bool canPlaceRoll = true;
     private bool canPlaceTable = true;
 
+    //text popup stuff
+    public GameObject exBarrelText;
+    public GameObject waterBarrelText;
+    public GameObject rollingBarrelText;
+    public GameObject tableText;
+
+
 
 
     // Use this for initialization
     void Start () 
     {
-
+        exBarrelText.SetActive(false);
+        waterBarrelText.SetActive(false);
+        rollingBarrelText.SetActive(false);
+        tableText.SetActive(false);
 	}
 	
 	// Update is called once per frame
@@ -66,18 +76,34 @@ public class ObjectPlacement : MonoBehaviour {
         if(Input.GetKey(KeyCode.Alpha1))
         {
             SelectItem(1);
+            exBarrelText.SetActive(true);
+            waterBarrelText.SetActive(false);
+            rollingBarrelText.SetActive(false);
+            tableText.SetActive(false);
         }
         if (Input.GetKey(KeyCode.Alpha2))
         {
             SelectItem(2);
+            waterBarrelText.SetActive(true);
+            exBarrelText.SetActive(false);
+            rollingBarrelText.SetActive(false);
+            tableText.SetActive(false);
         }
         if (Input.GetKey(KeyCode.Alpha3))
         {
             SelectItem(3);
+            rollingBarrelText.SetActive(true);
+            exBarrelText.SetActive(false);
+            waterBarrelText.SetActive(false);
+            tableText.SetActive(false);
         }
         if (Input.GetKey(KeyCode.Alpha4))
         {
             SelectItem(4);
+            tableText.SetActive(true);
+            exBarrelText.SetActive(false);
+            waterBarrelText.SetActive(false);
+            rollingBarrelText.SetActive(false);
         }
     }
 
@@ -155,10 +181,26 @@ public class ObjectPlacement : MonoBehaviour {
         {
             switch(selectedObject)
             {
-                case 1:                     if (canPlaceEX == true)                     {                         SpawnObject(explodingBarrel);                         exBarrelNumber--;                         exBarrelRemaining.text = exBarrelNumber.ToString();                     }                     break;                 case 2:                     if (canPlaceWater == true)                     {                         SpawnObject(waterBarrel);                         waterBarrelNumber--;                         waterBarrelRemaining.text = waterBarrelNumber.ToString();                     }                     break;                 case 3:                     if (canPlaceRoll == true)                     {                         SpawnObject(rollingBarrel, -1);                         rollingBarrelNumber--;                         rollingBarrelRemaining.text = rollingBarrelNumber.ToString();                     }                     break;
+                case 1:                     if (canPlaceEX == true)                     {
+                        exBarrelText.SetActive(true);
+                        waterBarrelText.SetActive(false);
+                        rollingBarrelText.SetActive(false);
+                        tableText.SetActive(false);                         SpawnObject(explodingBarrel);                         exBarrelNumber--;                         exBarrelRemaining.text = exBarrelNumber.ToString();                     }                     break;                 case 2:                     if (canPlaceWater == true)                     {
+                        waterBarrelText.SetActive(true);
+                        exBarrelText.SetActive(false);
+                        rollingBarrelText.SetActive(false);
+                        tableText.SetActive(false);                         SpawnObject(waterBarrel);                         waterBarrelNumber--;                         waterBarrelRemaining.text = waterBarrelNumber.ToString();                     }                     break;                 case 3:                     if (canPlaceRoll == true)                     {
+                        rollingBarrelText.SetActive(true);
+                        exBarrelText.SetActive(false);
+                        waterBarrelText.SetActive(false);
+                        tableText.SetActive(false);                         SpawnObject(rollingBarrel, -1);                         rollingBarrelNumber--;                         rollingBarrelRemaining.text = rollingBarrelNumber.ToString();                     }                     break;
                 case 4:
                     if(canPlaceTable == true)
                     {
+                        tableText.SetActive(true);
+                        exBarrelText.SetActive(false);
+                        waterBarrelText.SetActive(false);
+                        rollingBarrelText.SetActive(false);
                         SpawnObject(chair, true);
                         tableNumber--;
                         tableRemaining.text = tableNumber.ToString();
