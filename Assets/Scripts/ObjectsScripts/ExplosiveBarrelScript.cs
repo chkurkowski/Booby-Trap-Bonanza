@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ExplosiveBarrelScript : MonoBehaviour {
+public class ExplosiveBarrelScript : ObjectsScript
+{
     public GameObject barrelExplosion;
-    private bool isActive;
+    
     private ScoreBarScripts scoreBarInfo;
     [Range(0, 1)]
     public float scoreIncreaseAmount;

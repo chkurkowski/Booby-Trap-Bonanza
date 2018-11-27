@@ -70,6 +70,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chandelier: {fileID: 0}
   chandelierRope: {fileID: 0}
+  scoreIncreaseAmount: 0.2
 --- !u!212 &212852942436929048
 SpriteRenderer:
   m_ObjectHideFlags: 1
