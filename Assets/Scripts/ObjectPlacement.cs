@@ -36,14 +36,23 @@ public class ObjectPlacement : MonoBehaviour {
     public int tableNumber = 5;     private bool canPlaceEX = true;     private bool canPlaceWater = true;     private bool canPlaceRoll = true;
     private bool canPlaceTable = true;
 
+
     private bool flipped = true;
+    //text popup stuff
+    public GameObject exBarrelText;
+    public GameObject waterBarrelText;
+    public GameObject rollingBarrelText;
+    public GameObject tableText;
 
 
 
     // Use this for initialization
     void Start () 
     {
-
+        exBarrelText.SetActive(false);
+        waterBarrelText.SetActive(false);
+        rollingBarrelText.SetActive(false);
+        tableText.SetActive(false);
 	}
 	
 	// Update is called once per frame
@@ -69,18 +78,34 @@ public class ObjectPlacement : MonoBehaviour {
         if(Input.GetKey(KeyCode.Alpha1))
         {
             SelectItem(1);
+            exBarrelText.SetActive(true);
+            waterBarrelText.SetActive(false);
+            rollingBarrelText.SetActive(false);
+            tableText.SetActive(false);
         }
         if (Input.GetKey(KeyCode.Alpha2))
         {
             SelectItem(2);
+            waterBarrelText.SetActive(true);
+            exBarrelText.SetActive(false);
+            rollingBarrelText.SetActive(false);
+            tableText.SetActive(false);
         }
         if (Input.GetKey(KeyCode.Alpha3))
         {
             SelectItem(3);
+            rollingBarrelText.SetActive(true);
+            exBarrelText.SetActive(false);
+            waterBarrelText.SetActive(false);
+            tableText.SetActive(false);
         }
         if (Input.GetKey(KeyCode.Alpha4))
         {
             SelectItem(4);
+            tableText.SetActive(true);
+            exBarrelText.SetActive(false);
+            waterBarrelText.SetActive(false);
+            rollingBarrelText.SetActive(false);
         }
     }
 

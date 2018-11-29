@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class RollingBarrel : MonoBehaviour
 {
-
     public int rollDirection = 1;
     public float rollSpeed = 15f;
     private Rigidbody2D barrelRigidBody;

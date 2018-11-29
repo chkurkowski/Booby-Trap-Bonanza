@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireplaceScript : MonoBehaviour {
+public class FireplaceScript : ObjectsScript
+{
     public GameObject flameWoosh;
-    private bool isActive;
     public float wooshSpawnRate = .25f;
     public float wooshSpawnTime = 1f;
     private ScoreBarScripts scoreBarInfo;
