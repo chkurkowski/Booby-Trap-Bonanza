@@ -158,9 +158,17 @@ public class ObjectPlacement : MonoBehaviour {
         {
             currentObject.transform.position = mousePosition;
             if (flipped)
-                currentObject.GetComponent<SpriteRenderer>().flipX = false;
+            {
+                Vector3 scale = currentObject.transform.localScale;
+                if(currentObject.transform.localScale.x < 0)
+                    currentObject.transform.localScale = new Vector3(-scale.x, scale.y, scale.z);
+            }
             else
-                currentObject.GetComponent<SpriteRenderer>().flipX = true;
+            {
+                Vector3 scale = currentObject.transform.localScale;
+                if (currentObject.transform.localScale.x > 0)
+                    currentObject.transform.localScale = new Vector3(-scale.x, scale.y, scale.z);
+            }
             CheckValidPosition();
         }
     }
@@ -211,10 +219,11 @@ public class ObjectPlacement : MonoBehaviour {
 
             foreach(Collider2D col in activatables)
             {
-                //if(col.tag == "Activatable")
-                //{
+                if(col.gameObject.layer == 8)
+                {
                     print("Activated the " + col.name);
-                //}
+                    col.GetComponent<ObjectsScript>().isActive = true;
+                }
             }
         }
     }
@@ -243,10 +252,10 @@ public class ObjectPlacement : MonoBehaviour {
         Destroy(currentObject);
     }
 
-    private void SpawnObject(GameObject gm, bool flipped)
+    private void SpawnObject(GameObject gm, bool isFlipped)
     {
         GameObject chairGM = Instantiate(gm, mousePosition, Quaternion.identity);
-        if(flipped)
+        if(isFlipped)
         {
             chairGM.transform.localScale = new Vector3(-2.25f, 2.25f, 1);
         }
