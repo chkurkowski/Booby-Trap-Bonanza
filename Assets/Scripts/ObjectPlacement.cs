@@ -36,12 +36,13 @@ public class ObjectPlacement : MonoBehaviour {
     public int tableNumber = 5;     private bool canPlaceEX = true;     private bool canPlaceWater = true;     private bool canPlaceRoll = true;
     private bool canPlaceTable = true;
 
+
+    private bool flipped = true;
     //text popup stuff
     public GameObject exBarrelText;
     public GameObject waterBarrelText;
     public GameObject rollingBarrelText;
     public GameObject tableText;
-
 
 
 
@@ -60,6 +61,7 @@ public class ObjectPlacement : MonoBehaviour {
         GetMousePosition();
         FollowMouse();
         ClickToPlace();
+        FlipItem();
 
         SelectItem();
 
@@ -155,6 +157,10 @@ public class ObjectPlacement : MonoBehaviour {
         if(currentObject != null)
         {
             currentObject.transform.position = mousePosition;
+            if (flipped)
+                currentObject.GetComponent<SpriteRenderer>().flipX = false;
+            else
+                currentObject.GetComponent<SpriteRenderer>().flipX = true;
             CheckValidPosition();
         }
     }
@@ -181,56 +187,43 @@ public class ObjectPlacement : MonoBehaviour {
         {
             switch(selectedObject)
             {
-                case 1:                     if (canPlaceEX == true)                     {
-                        exBarrelText.SetActive(true);
-                        waterBarrelText.SetActive(false);
-                        rollingBarrelText.SetActive(false);
-                        tableText.SetActive(false);                         SpawnObject(explodingBarrel);                         exBarrelNumber--;                         exBarrelRemaining.text = exBarrelNumber.ToString();                     }                     break;                 case 2:                     if (canPlaceWater == true)                     {
-                        waterBarrelText.SetActive(true);
-                        exBarrelText.SetActive(false);
-                        rollingBarrelText.SetActive(false);
-                        tableText.SetActive(false);                         SpawnObject(waterBarrel);                         waterBarrelNumber--;                         waterBarrelRemaining.text = waterBarrelNumber.ToString();                     }                     break;                 case 3:                     if (canPlaceRoll == true)                     {
-                        rollingBarrelText.SetActive(true);
-                        exBarrelText.SetActive(false);
-                        waterBarrelText.SetActive(false);
-                        tableText.SetActive(false);                         SpawnObject(rollingBarrel, -1);                         rollingBarrelNumber--;                         rollingBarrelRemaining.text = rollingBarrelNumber.ToString();                     }                     break;
+                case 1:                     if (canPlaceEX == true)                     {                         SpawnObject(explodingBarrel);                         exBarrelNumber--;                         exBarrelRemaining.text = exBarrelNumber.ToString();                     }                     break;                 case 2:                     if (canPlaceWater == true)                     {                         SpawnObject(waterBarrel);                         waterBarrelNumber--;                         waterBarrelRemaining.text = waterBarrelNumber.ToString();                     }                     break;                 case 3:                     if (canPlaceRoll == true)                     {
+                        int temp = 1;
+                        if (flipped)
+                            temp = -1;                         SpawnObject(rollingBarrel, temp);
+                        rollingBarrelNumber--;
+                        rollingBarrelRemaining.text = rollingBarrelNumber.ToString();                     }                     break;
                 case 4:
                     if(canPlaceTable == true)
                     {
-                        tableText.SetActive(true);
-                        exBarrelText.SetActive(false);
-                        waterBarrelText.SetActive(false);
-                        rollingBarrelText.SetActive(false);
-                        SpawnObject(chair, true);
+                        SpawnObject(chair, flipped);
                         tableNumber--;
                         tableRemaining.text = tableNumber.ToString();
                     }
 
                     break;
-
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse1) && currentObject != null && validPos)
+        if(Input.GetKeyDown(KeyCode.Mouse1))
         {
-            if(selectedObject == 3)
+            Collider2D[] activatables = Physics2D.OverlapCircleAll(mousePosition, .05f);
+
+            foreach(Collider2D col in activatables)
             {
-                if(canPlaceRoll == true)
-                {
-                    SpawnObject(rollingBarrel, 1);
-                    rollingBarrelNumber--;
-                    rollingBarrelRemaining.text = rollingBarrelNumber.ToString(); 
-                }
+                //if(col.tag == "Activatable")
+                //{
+                    print("Activated the " + col.name);
+                //}
             }
-            else if(selectedObject == 4)
-            {
-                if(canPlaceTable)
-                {
-                    SpawnObject(chair, false);
-                    tableNumber--;
-                    tableRemaining.text = tableNumber.ToString();
-                }
-            }
+        }
+    }
+
+    private void FlipItem()
+    {
+        if(Input.GetKeyDown(KeyCode.Space) && selectedObject != 0)
+        {
+            flipped = !flipped;
         }
     }
 

@@ -207,6 +207,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chandelier: {fileID: 1254531122814592}
   chandelierRope: {fileID: 1107659328360938}
+  scoreIncreaseAmount: 0.2
 --- !u!114 &114827830940542400
 MonoBehaviour:
   m_ObjectHideFlags: 1
