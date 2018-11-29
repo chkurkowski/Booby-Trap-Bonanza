@@ -81,6 +81,7 @@ MonoBehaviour:
   flameWoosh: {fileID: 1437878578233518, guid: 0e7708a54ff9368459f7898e9f5c61cd, type: 2}
   wooshSpawnRate: 0.125
   wooshSpawnTime: 2
+  scoreIncreaseAmount: 0.2
 --- !u!212 &212806291353846674
 SpriteRenderer:
   m_ObjectHideFlags: 1

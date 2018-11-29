@@ -4297,6 +4297,11 @@ Prefab:
       propertyPath: m_SizeDelta.x
       value: 51.78
       objectReference: {fileID: 0}
+    - target: {fileID: 114686462795217362, guid: 4d1d136ce0de2e04ebf7cd51f93647ae,
+        type: 2}
+      propertyPath: skullsImage
+      value: 
+      objectReference: {fileID: 2045437103}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d1d136ce0de2e04ebf7cd51f93647ae, type: 2}
   m_IsPrefabAsset: 0
