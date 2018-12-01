@@ -79,7 +79,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.56, y: 0.59}
+    oldSize: {x: 0.56, y: 0.6}
     newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 246a6513cfdfde24097ca8196cc5adbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActive: 0
   chairLeg: {fileID: 1617459772935600, guid: 3a288e2534c8803479a2c01c339d2a13, type: 2}
   scoreIncreaseAmount: 0.2
 --- !u!212 &212927444221529988
@@ -136,7 +137,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ba110b3bf610d445c94f18a1fbdae76a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3d2c62c1e55094fbdbbb2d4a1d499213, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
