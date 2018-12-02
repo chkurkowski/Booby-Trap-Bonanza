@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class HelpScreenManagerScript : MonoBehaviour {
-    public GameObject objectInteractionHelpButton;
-    public GameObject controlsHelpButton;
+    public GameObject objectsButton;
+    public GameObject controlsButton;
     public GameObject backButton;
     public GameObject nextScreenButton;
 
     [Space(20)]
 
-    public Sprite controlPageSprite;
-    public Sprite objectPageSprite;
+    public GameObject controlPageSprite;
+    public GameObject objectPageSprite;
     /// <summary>
     /// 0 is gameplay, 1 is control screen, 2 is object interaction screen.
     /// </summary>
@@ -19,6 +19,9 @@ public class HelpScreenManagerScript : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
+        controlPageSprite.SetActive(false);
+        objectPageSprite.SetActive(false);
+        //
         backButton.SetActive(false);
         nextScreenButton.SetActive(false);
 	}
@@ -28,18 +31,33 @@ public class HelpScreenManagerScript : MonoBehaviour {
     {
 		switch(currentPausedState)
         {
-            case 0:
+            case 0://play screen
                 {
+                    controlPageSprite.SetActive(true);
+                    objectPageSprite.SetActive(true);
+                    //
+                    backButton.SetActive(false);
+                    nextScreenButton.SetActive(false);
                     Time.timeScale = 1;
                     break;
                 }
-            case 1:
+            case 1://controlPage
                 {
+                    controlPageSprite.SetActive(true);
+                    objectPageSprite.SetActive(false);
+                    //
+                    backButton.SetActive(true);
+                    nextScreenButton.SetActive(true);
                     Time.timeScale = 0;
                     break;
                 }
-            case 2:
+            case 2://objectPage
                 {
+                    controlPageSprite.SetActive(false);
+                    objectPageSprite.SetActive(true);
+                    //
+                    backButton.SetActive(true);
+                    nextScreenButton.SetActive(true);
                     Time.timeScale = 0;
                     break;
                 }

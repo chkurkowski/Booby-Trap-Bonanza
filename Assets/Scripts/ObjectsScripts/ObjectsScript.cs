@@ -6,6 +6,8 @@ public class ObjectsScript : MonoBehaviour
 {
 
     public bool isActive;
+
+    public bool isPossessed;
   
     
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ChandelierScript : MonoBehaviour {
     public bool isActive;
+    public bool isPossessed;
     private Rigidbody2D chandelierRigidBody;
    
     // Use this for initialization
