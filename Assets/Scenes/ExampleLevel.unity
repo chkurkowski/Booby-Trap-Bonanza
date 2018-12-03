@@ -1368,6 +1368,14 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 15.356226
       objectReference: {fileID: 0}
+    - target: {fileID: 4983726849561030, guid: e63f78ccbda9da94f9b92e051c7c584a, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 4.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 4983726849561030, guid: e63f78ccbda9da94f9b92e051c7c584a, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -12.59
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e63f78ccbda9da94f9b92e051c7c584a, type: 2}
   m_IsPrefabAsset: 0
@@ -1915,7 +1923,7 @@ Prefab:
         type: 2}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: ba110b3bf610d445c94f18a1fbdae76a,
+      objectReference: {fileID: 21300000, guid: 3d2c62c1e55094fbdbbb2d4a1d499213,
         type: 3}
     - target: {fileID: 4879657309758964, guid: bb7817e6b80741d4592c4cb8e6fff272, type: 2}
       propertyPath: m_LocalScale.y
@@ -2902,7 +2910,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 515.0001, y: -193.00006}
-  m_SizeDelta: {x: 36.9, y: 30}
+  m_SizeDelta: {x: 25.9, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1383494814
 MonoBehaviour:
@@ -2975,7 +2983,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: d17f15618d59b4caa8d21b131609d642, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b53de169e4fdc4d3fae1dbe7ee500422, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -4500,7 +4508,7 @@ Prefab:
         type: 2}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: ba110b3bf610d445c94f18a1fbdae76a,
+      objectReference: {fileID: 21300000, guid: 3d2c62c1e55094fbdbbb2d4a1d499213,
         type: 3}
     - target: {fileID: 4879657309758964, guid: bb7817e6b80741d4592c4cb8e6fff272, type: 2}
       propertyPath: m_LocalScale.y
@@ -4891,6 +4899,12 @@ Prefab:
       propertyPath: m_FlipX
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 212927444221529988, guid: bb7817e6b80741d4592c4cb8e6fff272,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3d2c62c1e55094fbdbbb2d4a1d499213,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb7817e6b80741d4592c4cb8e6fff272, type: 2}
   m_IsPrefabAsset: 0
@@ -5258,6 +5272,12 @@ Prefab:
       propertyPath: m_FlipX
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 212927444221529988, guid: bb7817e6b80741d4592c4cb8e6fff272,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3d2c62c1e55094fbdbbb2d4a1d499213,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb7817e6b80741d4592c4cb8e6fff272, type: 2}
   m_IsPrefabAsset: 0
