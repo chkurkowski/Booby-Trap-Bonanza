@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b31cd6a1e973384a8a75294c93d921c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chairLegSpeed: 600
+  chairLegSpeed: 400
   direction: 0
 --- !u!212 &212674850721973266
 SpriteRenderer:

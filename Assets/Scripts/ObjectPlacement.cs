@@ -257,10 +257,10 @@ public class ObjectPlacement : MonoBehaviour {
         GameObject chairGM = Instantiate(gm, mousePosition, Quaternion.identity);
         if(isFlipped)
         {
-            chairGM.transform.localScale = new Vector3(-2.25f, 2.25f, 1);
+            chairGM.transform.localScale = new Vector3(4f, 4f, 1);
         }
         else
-            chairGM.transform.localScale = new Vector3(2.25f, 2.25f, 1);
+            chairGM.transform.localScale = new Vector3(-4f, 4f, 1);
         selectedObject = 0;
         Destroy(currentObject);
     }
