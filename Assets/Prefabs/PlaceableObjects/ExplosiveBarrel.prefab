@@ -99,9 +99,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26da9f87ec54d394b9772aa5596fcd61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActive: 0
+  isPossessed: 0
   barrelExplosion: {fileID: 1558955340841412, guid: ed69f52a0c1fa084abda25197c92845b,
     type: 2}
   scoreIncreaseAmount: 0.2
+  possessedExplosionsAmount: 4
+  xOffset: 0
 --- !u!212 &212710410049152584
 SpriteRenderer:
   m_ObjectHideFlags: 1

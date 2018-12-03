@@ -178,7 +178,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.54}
@@ -205,6 +205,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90300d23cbc8fd648acf7e5ccfeae0bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActive: 0
+  isPossessed: 0
   chandelier: {fileID: 1254531122814592}
   chandelierRope: {fileID: 1107659328360938}
   scoreIncreaseAmount: 0.2
@@ -220,6 +222,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActive: 0
+  isFalling: 0
+  isPossessed: 0
+  colliderDelay: 0.5
 --- !u!212 &212032484317370550
 SpriteRenderer:
   m_ObjectHideFlags: 1

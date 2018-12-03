@@ -11,7 +11,7 @@ public class ExplosiveBarrelScript : ObjectsScript
     public float scoreIncreaseAmount;
     [Space(25)]
     public int possessedExplosionsAmount = 4;
-    public float xOffset = .5f;
+    public float xOffset;
     // Use this for initialization
 
 
@@ -28,10 +28,14 @@ public class ExplosiveBarrelScript : ObjectsScript
             isActive = false;
             if (isPossessed)
             {
-                for(int i = 0; i < possessedExplosionsAmount; i ++)
+                Instantiate(barrelExplosion, transform.position, transform.rotation);
+                for (int i = 0; i < possessedExplosionsAmount; i ++)
                 {
-                    Instantiate(barrelExplosion, new Vector3(transform.position.x + (xOffset +i/10), transform.position.y, transform.position.z), transform.rotation);
-                    Instantiate(barrelExplosion, new Vector3(transform.position.x - (xOffset + i/10), transform.position.y, transform.position.z), transform.rotation);
+                    Instantiate(barrelExplosion, new Vector3(transform.position.x + xOffset /*(float)(xOffset +i)*/, transform.position.y, transform.position.z), transform.rotation);
+                    Instantiate(barrelExplosion, new Vector3(transform.position.x - xOffset/*(float)(xOffset + i)*/, transform.position.y, transform.position.z), transform.rotation);
+                    Instantiate(barrelExplosion, new Vector3(transform.position.x , transform.position.y + xOffset/*(float)(xOffset + i)*/, transform.position.z), transform.rotation);
+                    Instantiate(barrelExplosion, new Vector3(transform.position.x , transform.position.y - xOffset/*(float)(xOffset + i)*/, transform.position.z), transform.rotation);
+                    xOffset++;
                 }
             }
             else

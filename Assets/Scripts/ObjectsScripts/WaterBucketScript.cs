@@ -22,7 +22,12 @@ public class WaterBucketScript : ObjectsScript
 		if(isActive)
         {
             isActive = false;
-            Instantiate(waterPuddle, transform.position, transform.rotation);
+           GameObject spawnedPuddle = Instantiate(waterPuddle, transform.position, transform.rotation);
+            if(isPossessed)
+            {
+                spawnedPuddle.GetComponent<WaterPuddleScript>().isPossessed = true;
+            }
+            
             //do breaking animation here
             //call Destroy at the end of the anim if it doesnt leave debris
             Destroy(gameObject);

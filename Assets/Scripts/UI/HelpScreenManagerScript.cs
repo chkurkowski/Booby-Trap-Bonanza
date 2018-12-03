@@ -5,7 +5,7 @@ using UnityEngine;
 public class HelpScreenManagerScript : MonoBehaviour {
     public GameObject objectsButton;
     public GameObject controlsButton;
-    public GameObject backButton;
+    public GameObject resumeButton;
     public GameObject nextScreenButton;
 
     [Space(20)]
@@ -22,7 +22,7 @@ public class HelpScreenManagerScript : MonoBehaviour {
         controlPageSprite.SetActive(false);
         objectPageSprite.SetActive(false);
         //
-        backButton.SetActive(false);
+        resumeButton.SetActive(false);
         nextScreenButton.SetActive(false);
 	}
 	
@@ -36,7 +36,7 @@ public class HelpScreenManagerScript : MonoBehaviour {
                     controlPageSprite.SetActive(true);
                     objectPageSprite.SetActive(true);
                     //
-                    backButton.SetActive(false);
+                    resumeButton.SetActive(false);
                     nextScreenButton.SetActive(false);
                     Time.timeScale = 1;
                     break;
@@ -46,7 +46,7 @@ public class HelpScreenManagerScript : MonoBehaviour {
                     controlPageSprite.SetActive(true);
                     objectPageSprite.SetActive(false);
                     //
-                    backButton.SetActive(true);
+                    resumeButton.SetActive(true);
                     nextScreenButton.SetActive(true);
                     Time.timeScale = 0;
                     break;
@@ -56,7 +56,7 @@ public class HelpScreenManagerScript : MonoBehaviour {
                     controlPageSprite.SetActive(false);
                     objectPageSprite.SetActive(true);
                     //
-                    backButton.SetActive(true);
+                    resumeButton.SetActive(true);
                     nextScreenButton.SetActive(true);
                     Time.timeScale = 0;
                     break;
