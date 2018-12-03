@@ -24,6 +24,8 @@ public class HelpScreenManagerScript : MonoBehaviour {
         //
         resumeButton.SetActive(false);
         nextScreenButton.SetActive(false);
+        objectsButton.SetActive(false);
+        controlsButton.SetActive(false);
 	}
 	
 	// Update is called once per frame
@@ -33,11 +35,13 @@ public class HelpScreenManagerScript : MonoBehaviour {
         {
             case 0://play screen
                 {
-                    controlPageSprite.SetActive(true);
-                    objectPageSprite.SetActive(true);
+                    controlPageSprite.SetActive(false);
+                    objectPageSprite.SetActive(false);
                     //
                     resumeButton.SetActive(false);
                     nextScreenButton.SetActive(false);
+                    objectsButton.SetActive(true);
+                    controlsButton.SetActive(true);
                     Time.timeScale = 1;
                     break;
                 }
@@ -48,6 +52,8 @@ public class HelpScreenManagerScript : MonoBehaviour {
                     //
                     resumeButton.SetActive(true);
                     nextScreenButton.SetActive(true);
+                    objectsButton.SetActive(false);
+                    controlsButton.SetActive(false);
                     Time.timeScale = 0;
                     break;
                 }
@@ -58,6 +64,8 @@ public class HelpScreenManagerScript : MonoBehaviour {
                     //
                     resumeButton.SetActive(true);
                     nextScreenButton.SetActive(true);
+                    objectsButton.SetActive(false);
+                    controlsButton.SetActive(false);
                     Time.timeScale = 0;
                     break;
                 }
