@@ -31,9 +31,17 @@ public class ObjectPlacement : MonoBehaviour {
 
 
     //limited resources stuff
-    public Text exBarrelRemaining;     public Text waterBarrelRemaining;     public Text rollingBarrelRemaining;
-    public Text tableRemaining;     public int exBarrelNumber = 5;     public int waterBarrelNumber = 5;     public int rollingBarrelNumber = 5;
-    public int tableNumber = 5;     private bool canPlaceEX = true;     private bool canPlaceWater = true;     private bool canPlaceRoll = true;
+    public Text exBarrelRemaining;
+    public Text waterBarrelRemaining;
+    public Text rollingBarrelRemaining;
+    public Text tableRemaining;
+    public int exBarrelNumber = 5;
+    public int waterBarrelNumber = 5;
+    public int rollingBarrelNumber = 5;
+    public int tableNumber = 5;
+    private bool canPlaceEX = true;
+    private bool canPlaceWater = true;
+    private bool canPlaceRoll = true;
     private bool canPlaceTable = true;
 
 
@@ -65,7 +73,18 @@ public class ObjectPlacement : MonoBehaviour {
 
         SelectItem();
 
-        if (waterBarrelNumber <= 0)         {             canPlaceWater = false;         }         if (exBarrelNumber <= 0)         {             canPlaceEX = false;         }         if (rollingBarrelNumber <= 0)         {             canPlaceRoll = false;         }
+        if (waterBarrelNumber <= 0)
+        {
+            canPlaceWater = false;
+        }
+        if (exBarrelNumber <= 0)
+        {
+            canPlaceEX = false;
+        }
+        if (rollingBarrelNumber <= 0)
+        {
+            canPlaceRoll = false;
+        }
         if(tableNumber <= 0)
         {
             canPlaceTable = false;
@@ -195,12 +214,33 @@ public class ObjectPlacement : MonoBehaviour {
         {
             switch(selectedObject)
             {
-                case 1:                     if (canPlaceEX == true)                     {                         SpawnObject(explodingBarrel);                         exBarrelNumber--;                         exBarrelRemaining.text = exBarrelNumber.ToString();                     }                     break;                 case 2:                     if (canPlaceWater == true)                     {                         SpawnObject(waterBarrel);                         waterBarrelNumber--;                         waterBarrelRemaining.text = waterBarrelNumber.ToString();                     }                     break;                 case 3:                     if (canPlaceRoll == true)                     {
+                case 1:
+                    if (canPlaceEX == true)
+                    {
+                        SpawnObject(explodingBarrel);
+                        exBarrelNumber--;
+                        exBarrelRemaining.text = exBarrelNumber.ToString();
+                    }
+                    break;
+                case 2:
+                    if (canPlaceWater == true)
+                    {
+                        SpawnObject(waterBarrel);
+                        waterBarrelNumber--;
+                        waterBarrelRemaining.text = waterBarrelNumber.ToString();
+                    }
+                    break;
+                case 3:
+                    if (canPlaceRoll == true)
+                    {
                         int temp = 1;
                         if (flipped)
-                            temp = -1;                         SpawnObject(rollingBarrel, temp);
+                            temp = -1;
+                        SpawnObject(rollingBarrel, temp);
                         rollingBarrelNumber--;
-                        rollingBarrelRemaining.text = rollingBarrelNumber.ToString();                     }                     break;
+                        rollingBarrelRemaining.text = rollingBarrelNumber.ToString();
+                    }
+                    break;
                 case 4:
                     if(canPlaceTable == true)
                     {

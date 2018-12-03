@@ -40,6 +40,7 @@ public class FireplaceScript : ObjectsScript
         
      GameObject wooshLeft = Instantiate(flameWoosh, transform.position/*new Vector3(transform.position.x + (xOffset * -1), transform.position.y, transform.position.z)*/, transform.rotation);
         wooshLeft.GetComponent<FlameWooshScript>().directionFacing = -1;
+        wooshLeft.transform.localScale = new Vector3(wooshLeft.transform.localScale.x * -1, wooshLeft.transform.localScale.y, wooshLeft.transform.localScale.z);
         if (isPossessed)
         {
             wooshRight.GetComponent<FlameWooshScript>().wooshSpeed *= 5;
