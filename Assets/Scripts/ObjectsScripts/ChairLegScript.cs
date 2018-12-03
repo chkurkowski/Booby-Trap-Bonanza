@@ -24,7 +24,11 @@ public class ChairLegScript : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D trig)
     {
-        if(trig.gameObject.layer == 8)
+        if(trig.gameObject.tag != "Goon" && trig.gameObject.tag != "ChandelierSpool" && trig.gameObject.layer == 8)
+        {
+            Destroy(gameObject);
+        }
+        if(trig.gameObject.tag == "Wall" || trig.gameObject.tag == "Ground")
         {
             Destroy(gameObject);
         }

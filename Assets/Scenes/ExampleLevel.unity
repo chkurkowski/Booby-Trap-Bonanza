@@ -1796,6 +1796,11 @@ Prefab:
       propertyPath: m_Name
       value: ExplosiveBarrel (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 114288485090598136, guid: af947d867ed024c4e97fcf3918609db5,
+        type: 2}
+      propertyPath: isPossessed
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af947d867ed024c4e97fcf3918609db5, type: 2}
   m_IsPrefabAsset: 0
