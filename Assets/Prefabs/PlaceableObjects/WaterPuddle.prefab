@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212372221155799072}
   - component: {fileID: 61221071280016414}
   - component: {fileID: 50783113950206128}
+  - component: {fileID: 114072497432593596}
   m_Layer: 10
   m_Name: WaterPuddle
   m_TagString: Interactable
@@ -87,6 +88,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.512, y: 0.512}
   m_EdgeRadius: 0
+--- !u!114 &114072497432593596
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1208140565913144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7603ee5f4775d3247bbdbfd6ba17d382, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPossessed: 0
 --- !u!212 &212372221155799072
 SpriteRenderer:
   m_ObjectHideFlags: 1

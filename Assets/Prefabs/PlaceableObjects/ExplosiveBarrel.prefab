@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActive: 0
-  isPossessed: 1
+  isPossessed: 0
   barrelExplosion: {fileID: 1558955340841412, guid: ed69f52a0c1fa084abda25197c92845b,
     type: 2}
   scoreIncreaseAmount: 0.2
