@@ -24,6 +24,17 @@ public class ChandelierSpoolScript : ObjectsScript
         if (isActive)
         {
             isActive = false;
+            if(isPossessed)
+            {
+                chandelier.GetComponent<ChandelierScript>().isActive = true;
+                chandelier.GetComponent<ChandelierScript>().isPossessed = true;
+                Destroy(chandelierRope);
+            }
+            else
+            {
+                chandelier.GetComponent<ChandelierScript>().isActive = true;
+                Destroy(chandelierRope);
+            }
             chandelier.GetComponent<ChandelierScript>().isActive = true;
             Destroy(chandelierRope);
             //do breaking animation here

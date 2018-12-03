@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GoonAI : MonoBehaviour {
+public class GoonAI : MonoBehaviour
+{
 
-    public enum State{
+    public enum State
+    {
         IDLE,
         PATROL,
         ALERT,
         BURNING,
         SLIDING,
+        SUPERSLIDING,
         DYING
     }
     public State state;
@@ -24,7 +27,7 @@ public class GoonAI : MonoBehaviour {
 
     [SerializeField]
     private int patrolDirection = -1;
-    public  Vector2[] waypoints;
+    public Vector2[] waypoints;
     private Vector2 target;
     private float speed = 2;
     private int currentWaypoint = 0;
@@ -33,11 +36,13 @@ public class GoonAI : MonoBehaviour {
     private bool moving = false;
     private bool burning = false;
     private bool sliding = false;
+    private bool superSliding = false;
 
     private Animator animatorInfo;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         alive = true;
         state = State.IDLE;
         if (move)
@@ -45,13 +50,13 @@ public class GoonAI : MonoBehaviour {
         animatorInfo = gameObject.GetComponent<Animator>();
 
         StartCoroutine("FSM");
-	}
-	
+    }
+
     /* Finite State Machine and State Functions */
 
     IEnumerator FSM()
     {
-        while(alive)
+        while (alive)
         {
             print(state);
 
@@ -72,6 +77,9 @@ public class GoonAI : MonoBehaviour {
                 case State.SLIDING:
                     Sliding();
                     break;
+                case State.SUPERSLIDING:
+                    SuperSliding();
+                    break;
                 case State.DYING:
                     Dying();
                     break;
@@ -88,7 +96,7 @@ public class GoonAI : MonoBehaviour {
         moving = false;
         idleTimer += Time.deltaTime;
 
-        if(idleTimer >= IDLETIME)
+        if (idleTimer >= IDLETIME)
         {
             state = State.PATROL;
             idleTimer = 0;
@@ -151,12 +159,12 @@ public class GoonAI : MonoBehaviour {
 
     private void Burning()
     {
-       // animatorInfo.SetBool("isBurning", true);
+        // animatorInfo.SetBool("isBurning", true);
         speed = .1f;
         Invoke("BurningDeath", 4);
         burning = true;
 
-        if(currentDirection > 0)
+        if (currentDirection > 0)
         {
             //animatorInfo.SetFloat("speed", 1);
             animatorInfo.SetBool("moveLeft", false);
@@ -164,7 +172,7 @@ public class GoonAI : MonoBehaviour {
 
             transform.Translate(Vector3.right * speed);
         }
-            
+
         else
         {
             //animatorInfo.SetFloat("speed", -1);
@@ -173,7 +181,7 @@ public class GoonAI : MonoBehaviour {
 
             transform.Translate(-Vector3.right * speed);
         }
-            
+
 
         gameObject.layer = 0;
         gameObject.tag = "Interactable";
@@ -193,9 +201,24 @@ public class GoonAI : MonoBehaviour {
         gameObject.tag = "Interactable";
     }
 
+    private void SuperSliding()
+    {
+        speed = .12f;
+        superSliding = true;
+
+        if (currentDirection > 0)
+            transform.Translate(Vector3.right * speed);
+        else
+            transform.Translate(-Vector3.right * speed);
+
+        gameObject.layer = 0;
+        gameObject.tag = "Interactable";
+    }
+
     private void Dying()
     {
         alive = false;
+        gameObject.GetComponent<Collider2D>().enabled = false;
         print(alive);
     }
 
@@ -220,7 +243,7 @@ public class GoonAI : MonoBehaviour {
         else
         {
             target = waypoints[currentWaypoint++];
-           
+
         }
         print("Current Waypoint After: " + currentWaypoint);
     }
@@ -246,73 +269,32 @@ public class GoonAI : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if ((sliding && col.gameObject.layer == 8) || (sliding && col.gameObject.tag == "Wall"))
+        if(superSliding && col.gameObject.tag == "Wall")
         {
             animatorInfo.SetBool("isKill", true);
             state = State.DYING;
         }
-
-        if (col.gameObject.name == "WaterPuddle(Clone)")
-            {
-                animatorInfo.SetBool("isSlip", true);
-                state = State.SLIDING;
-               
-            }
-            else if (col.gameObject.name == "FlameWoosh(Clone)")
-            {
-                animatorInfo.SetBool("isBurning", true);
-                state = State.BURNING;
-            }
-            else if (col.gameObject.name == "BarrelExplosion(Clone)")
-            {
-                animatorInfo.SetBool("isKill", true);
-                state = State.DYING;
-            }
-            else if (col.gameObject.name == "ChairLeg(Clone)")
-            {
-                animatorInfo.SetBool("isImpale", true);
-                state = State.DYING;
-            }
-            else if (col.gameObject.name == "Chandelier")
-            {
-                animatorInfo.SetBool("isCrush", true);
-                state = State.DYING;
-            }
-            else if (col.gameObject.name == "RollingBarrel(Clone)") 
-            {
-                animatorInfo.SetBool("isKill", true);
-                state = State.DYING;
-            }
-        }
-
-
-    private void OnCollisionEnter2D(Collision2D col)
-    {
-        //Debug.Log("This collision happened");
-        
-            if (burning)
-            {
-                if (col.gameObject.tag == "Wall")
-                {
-                    print("Hit Wall");
-                    if (currentDirection < 0)
-                        currentDirection = 1;
-                    else
-                        currentDirection = -1;
-                }
-            }
-
+        else if(!superSliding)
+        {
             if ((sliding && col.gameObject.layer == 8) || (sliding && col.gameObject.tag == "Wall"))
             {
-            Debug.Log("Ummm");
-                Destroy(gameObject);
+                animatorInfo.SetBool("isKill", true);
+                state = State.DYING;
             }
-      
-            
             if (col.gameObject.name == "WaterPuddle(Clone)")
             {
-                animatorInfo.SetBool("isSlip", true);
-                state = State.SLIDING;
+                if (col.gameObject.GetComponent<WaterPuddleScript>().isPossessed)
+                {
+                    animatorInfo.SetBool("isSlip", true);
+                    state = State.SUPERSLIDING;
+                }
+                else
+                {
+                    animatorInfo.SetBool("isSlip", true);
+                    state = State.SLIDING;
+                }
+
+
             }
             else if (col.gameObject.name == "FlameWoosh(Clone)")
             {
@@ -339,6 +321,87 @@ public class GoonAI : MonoBehaviour {
                 animatorInfo.SetBool("isKill", true);
                 state = State.DYING;
             }
+        }
+       
+
+       
+    }
+
+
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        //Debug.Log("This collision happened");
+
+        if (burning)
+        {
+            if (col.gameObject.tag == "Wall")
+            {
+                print("Hit Wall");
+                if (currentDirection < 0)
+                {
+                    currentDirection = 1;
+                }  
+                else
+                {
+                    currentDirection = -1;
+                }
+                    
+            }
+        }
+
+        if (superSliding && col.gameObject.tag == "Wall")
+        {
+            animatorInfo.SetBool("isKill", true);
+            state = State.DYING;
+        }
+        else if (!superSliding)
+        {
+            if ((sliding && col.gameObject.layer == 8) || (sliding && col.gameObject.tag == "Wall"))
+            {
+                animatorInfo.SetBool("isKill", true);
+                state = State.DYING;
+            }
+            if (col.gameObject.name == "WaterPuddle(Clone)")
+            {
+                if (col.gameObject.GetComponent<WaterPuddleScript>().isPossessed)
+                {
+                    animatorInfo.SetBool("isSlip", true);
+                    state = State.SUPERSLIDING;
+                }
+                else
+                {
+                    animatorInfo.SetBool("isSlip", true);
+                    state = State.SLIDING;
+                }
+
+
+            }
+            else if (col.gameObject.name == "FlameWoosh(Clone)")
+            {
+                animatorInfo.SetBool("isBurning", true);
+                state = State.BURNING;
+            }
+            else if (col.gameObject.name == "BarrelExplosion(Clone)")
+            {
+                animatorInfo.SetBool("isKill", true);
+                state = State.DYING;
+            }
+            else if (col.gameObject.name == "ChairLeg(Clone)")
+            {
+                animatorInfo.SetBool("isImpale", true);
+                state = State.DYING;
+            }
+            else if (col.gameObject.name == "Chandelier")
+            {
+                animatorInfo.SetBool("isCrush", true);
+                state = State.DYING;
+            }
+            else if (col.gameObject.name == "RollingBarrel(Clone)")
+            {
+                animatorInfo.SetBool("isKill", true);
+                state = State.DYING;
+            }
+        }
     }
 
 
