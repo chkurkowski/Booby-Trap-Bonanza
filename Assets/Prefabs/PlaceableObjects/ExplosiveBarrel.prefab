@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1707040267105348}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.7547734, y: -5.526124, z: -5}
+  m_LocalPosition: {x: 0.57, y: -7.12, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -99,9 +99,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26da9f87ec54d394b9772aa5596fcd61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActive: 0
+  isPossessed: 0
   barrelExplosion: {fileID: 1558955340841412, guid: ed69f52a0c1fa084abda25197c92845b,
     type: 2}
   scoreIncreaseAmount: 0.2
+  possessedExplosionsAmount: 4
+  xOffset: 1
 --- !u!212 &212710410049152584
 SpriteRenderer:
   m_ObjectHideFlags: 1

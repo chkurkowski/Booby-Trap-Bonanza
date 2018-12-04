@@ -24,6 +24,10 @@ public class FireplaceScript : ObjectsScript
         if (isActive)
         {
             isActive = false;
+            if(isPossessed)
+            {
+                wooshSpawnRate /= 2;
+            }
             InvokeRepeating("SpawnWoosh", 0, wooshSpawnRate);
             Invoke("CancelSpawnWoosh", wooshSpawnTime);
         }
@@ -33,8 +37,15 @@ public class FireplaceScript : ObjectsScript
     {
      GameObject wooshRight = Instantiate(flameWoosh, transform.position/*new Vector3(transform.position.x + xOffset, transform.position.y, transform.position.z)*/, transform.rotation);
         wooshRight.GetComponent<FlameWooshScript>().directionFacing = 1;
+        
      GameObject wooshLeft = Instantiate(flameWoosh, transform.position/*new Vector3(transform.position.x + (xOffset * -1), transform.position.y, transform.position.z)*/, transform.rotation);
         wooshLeft.GetComponent<FlameWooshScript>().directionFacing = -1;
+        wooshLeft.transform.localScale = new Vector3(wooshLeft.transform.localScale.x * -1, wooshLeft.transform.localScale.y, wooshLeft.transform.localScale.z);
+        if (isPossessed)
+        {
+            wooshRight.GetComponent<FlameWooshScript>().wooshSpeed *= 5;
+            wooshLeft.GetComponent<FlameWooshScript>().wooshSpeed *= 5;
+        }
         //xOffset += xOffsetAmount;  
     }
     public void CancelSpawnWoosh()

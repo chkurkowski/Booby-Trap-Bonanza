@@ -20,6 +20,11 @@ public class ChairScript : ObjectsScript {
         if(isActive)
         {
             isActive = false;
+            if(isPossessed)
+            {
+                GameObject spawnedChairLeg1 = Instantiate(chairLeg, transform.position, transform.rotation);
+                spawnedChairLeg1.GetComponent<ChairLegScript>().direction = gameObject.transform.localScale.x;
+            }
            GameObject spawnedChairLeg = Instantiate(chairLeg, transform.position, transform.rotation);
             spawnedChairLeg.GetComponent<ChairLegScript>().direction = -gameObject.transform.localScale.x; //do breaking animation here
             //call Destroy at the end of the anim if it doesnt leave debris

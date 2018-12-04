@@ -9,6 +9,9 @@ public class ExplosiveBarrelScript : ObjectsScript
     private ScoreBarScripts scoreBarInfo;
     [Range(0, 1)]
     public float scoreIncreaseAmount;
+    [Space(25)]
+    public int possessedExplosionsAmount = 4;
+    public float xOffset;
     // Use this for initialization
 
 
@@ -23,7 +26,23 @@ public class ExplosiveBarrelScript : ObjectsScript
         if (isActive)
         {
             isActive = false;
-            Instantiate(barrelExplosion, transform.position, transform.rotation);
+            if (isPossessed)
+            {
+                Instantiate(barrelExplosion, transform.position, transform.rotation);
+                for (int i = 0; i < possessedExplosionsAmount; i ++)
+                {
+                    Instantiate(barrelExplosion, new Vector3(transform.position.x + xOffset /*(float)(xOffset +i)*/, transform.position.y, transform.position.z), transform.rotation);
+                    Instantiate(barrelExplosion, new Vector3(transform.position.x - xOffset/*(float)(xOffset + i)*/, transform.position.y, transform.position.z), transform.rotation);
+                    Instantiate(barrelExplosion, new Vector3(transform.position.x , transform.position.y + xOffset/*(float)(xOffset + i)*/, transform.position.z), transform.rotation);
+                    Instantiate(barrelExplosion, new Vector3(transform.position.x , transform.position.y - xOffset/*(float)(xOffset + i)*/, transform.position.z), transform.rotation);
+                    xOffset++;
+                }
+            }
+            else
+            {
+                Instantiate(barrelExplosion, transform.position, transform.rotation);
+            }
+            
             //do breaking animation here
             //call Destroy at the end of the anim if it doesnt leave debris
             Destroy(gameObject);

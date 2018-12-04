@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HelpButtonScript : MonoBehaviour {
+public class ButtonScript : MonoBehaviour {
     private HelpScreenManagerScript helpManagerInfo; 
 	// Use this for initialization
 	void Start ()
@@ -36,5 +36,9 @@ public class HelpButtonScript : MonoBehaviour {
         {
             helpManagerInfo.currentPausedState = 1;
         }
+    }
+    public void BackButton()
+    {
+        helpManagerInfo.currentPausedState = 0;
     }
 }

@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 95635087191436268}
   m_Layer: 9
   m_Name: Goon
-  m_TagString: Untagged
+  m_TagString: Goon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,6 +109,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
+  move: 1
+  alive: 0
   IDLETIME: 2
   patrolDirection: -1
   waypoints:

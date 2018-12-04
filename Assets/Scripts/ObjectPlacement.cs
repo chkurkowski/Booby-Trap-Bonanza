@@ -31,17 +31,26 @@ public class ObjectPlacement : MonoBehaviour {
 
 
     //limited resources stuff
-    public Text exBarrelRemaining;     public Text waterBarrelRemaining;     public Text rollingBarrelRemaining;
-    public Text tableRemaining;     public int exBarrelNumber = 5;     public int waterBarrelNumber = 5;     public int rollingBarrelNumber = 5;
-    public int tableNumber = 5;     private bool canPlaceEX = true;     private bool canPlaceWater = true;     private bool canPlaceRoll = true;
+    public Text exBarrelRemaining;
+    public Text waterBarrelRemaining;
+    public Text rollingBarrelRemaining;
+    public Text tableRemaining;
+    public int exBarrelNumber = 5;
+    public int waterBarrelNumber = 5;
+    public int rollingBarrelNumber = 5;
+    public int tableNumber = 5;
+    private bool canPlaceEX = true;
+    private bool canPlaceWater = true;
+    private bool canPlaceRoll = true;
     private bool canPlaceTable = true;
 
+
+    private bool flipped = true;
     //text popup stuff
     public GameObject exBarrelText;
     public GameObject waterBarrelText;
     public GameObject rollingBarrelText;
     public GameObject tableText;
-
 
 
 
@@ -60,10 +69,22 @@ public class ObjectPlacement : MonoBehaviour {
         GetMousePosition();
         FollowMouse();
         ClickToPlace();
+        FlipItem();
 
         SelectItem();
 
-        if (waterBarrelNumber <= 0)         {             canPlaceWater = false;         }         if (exBarrelNumber <= 0)         {             canPlaceEX = false;         }         if (rollingBarrelNumber <= 0)         {             canPlaceRoll = false;         }
+        if (waterBarrelNumber <= 0)
+        {
+            canPlaceWater = false;
+        }
+        if (exBarrelNumber <= 0)
+        {
+            canPlaceEX = false;
+        }
+        if (rollingBarrelNumber <= 0)
+        {
+            canPlaceRoll = false;
+        }
         if(tableNumber <= 0)
         {
             canPlaceTable = false;
@@ -155,6 +176,18 @@ public class ObjectPlacement : MonoBehaviour {
         if(currentObject != null)
         {
             currentObject.transform.position = mousePosition;
+            if (flipped)
+            {
+                Vector3 scale = currentObject.transform.localScale;
+                if(currentObject.transform.localScale.x < 0)
+                    currentObject.transform.localScale = new Vector3(-scale.x, scale.y, scale.z);
+            }
+            else
+            {
+                Vector3 scale = currentObject.transform.localScale;
+                if (currentObject.transform.localScale.x > 0)
+                    currentObject.transform.localScale = new Vector3(-scale.x, scale.y, scale.z);
+            }
             CheckValidPosition();
         }
     }
@@ -181,56 +214,65 @@ public class ObjectPlacement : MonoBehaviour {
         {
             switch(selectedObject)
             {
-                case 1:                     if (canPlaceEX == true)                     {
-                        exBarrelText.SetActive(true);
-                        waterBarrelText.SetActive(false);
-                        rollingBarrelText.SetActive(false);
-                        tableText.SetActive(false);                         SpawnObject(explodingBarrel);                         exBarrelNumber--;                         exBarrelRemaining.text = exBarrelNumber.ToString();                     }                     break;                 case 2:                     if (canPlaceWater == true)                     {
-                        waterBarrelText.SetActive(true);
-                        exBarrelText.SetActive(false);
-                        rollingBarrelText.SetActive(false);
-                        tableText.SetActive(false);                         SpawnObject(waterBarrel);                         waterBarrelNumber--;                         waterBarrelRemaining.text = waterBarrelNumber.ToString();                     }                     break;                 case 3:                     if (canPlaceRoll == true)                     {
-                        rollingBarrelText.SetActive(true);
-                        exBarrelText.SetActive(false);
-                        waterBarrelText.SetActive(false);
-                        tableText.SetActive(false);                         SpawnObject(rollingBarrel, -1);                         rollingBarrelNumber--;                         rollingBarrelRemaining.text = rollingBarrelNumber.ToString();                     }                     break;
+                case 1:
+                    if (canPlaceEX == true)
+                    {
+                        SpawnObject(explodingBarrel);
+                        exBarrelNumber--;
+                        exBarrelRemaining.text = exBarrelNumber.ToString();
+                    }
+                    break;
+                case 2:
+                    if (canPlaceWater == true)
+                    {
+                        SpawnObject(waterBarrel);
+                        waterBarrelNumber--;
+                        waterBarrelRemaining.text = waterBarrelNumber.ToString();
+                    }
+                    break;
+                case 3:
+                    if (canPlaceRoll == true)
+                    {
+                        int temp = 1;
+                        if (flipped)
+                            temp = -1;
+                        SpawnObject(rollingBarrel, temp);
+                        rollingBarrelNumber--;
+                        rollingBarrelRemaining.text = rollingBarrelNumber.ToString();
+                    }
+                    break;
                 case 4:
                     if(canPlaceTable == true)
                     {
-                        tableText.SetActive(true);
-                        exBarrelText.SetActive(false);
-                        waterBarrelText.SetActive(false);
-                        rollingBarrelText.SetActive(false);
-                        SpawnObject(chair, true);
+                        SpawnObject(chair, flipped);
                         tableNumber--;
                         tableRemaining.text = tableNumber.ToString();
                     }
 
                     break;
-
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse1) && currentObject != null && validPos)
+        if(Input.GetKeyDown(KeyCode.Mouse1))
         {
-            if(selectedObject == 3)
+            Collider2D[] activatables = Physics2D.OverlapCircleAll(mousePosition, .05f);
+
+            foreach(Collider2D col in activatables)
             {
-                if(canPlaceRoll == true)
+                if(col.gameObject.layer == 8)
                 {
-                    SpawnObject(rollingBarrel, 1);
-                    rollingBarrelNumber--;
-                    rollingBarrelRemaining.text = rollingBarrelNumber.ToString(); 
+                    print("Activated the " + col.name);
+                    col.GetComponent<ObjectsScript>().isActive = true;
                 }
             }
-            else if(selectedObject == 4)
-            {
-                if(canPlaceTable)
-                {
-                    SpawnObject(chair, false);
-                    tableNumber--;
-                    tableRemaining.text = tableNumber.ToString();
-                }
-            }
+        }
+    }
+
+    private void FlipItem()
+    {
+        if(Input.GetKeyDown(KeyCode.Space) && selectedObject != 0)
+        {
+            flipped = !flipped;
         }
     }
 
@@ -250,15 +292,15 @@ public class ObjectPlacement : MonoBehaviour {
         Destroy(currentObject);
     }
 
-    private void SpawnObject(GameObject gm, bool flipped)
+    private void SpawnObject(GameObject gm, bool isFlipped)
     {
         GameObject chairGM = Instantiate(gm, mousePosition, Quaternion.identity);
-        if(flipped)
+        if(isFlipped)
         {
-            chairGM.transform.localScale = new Vector3(-2.25f, 2.25f, 1);
+            chairGM.transform.localScale = new Vector3(4f, 4f, 1);
         }
         else
-            chairGM.transform.localScale = new Vector3(2.25f, 2.25f, 1);
+            chairGM.transform.localScale = new Vector3(-4f, 4f, 1);
         selectedObject = 0;
         Destroy(currentObject);
     }
