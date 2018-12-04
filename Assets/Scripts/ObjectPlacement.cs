@@ -214,7 +214,8 @@ public class ObjectPlacement : MonoBehaviour {
                 exBarrelText.SetActive(false);
                 waterBarrelText.SetActive(false);
                 rollingBarrelText.SetActive(false);
-                //TODO Activate ghost text
+                ghostText.SetActive(true);
+               
             }
         }
     }
