@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class TutorialLevelManagerScript : MonoBehaviour {
+public class TutorialLevelManagerScript : MonoBehaviour 
+{
 
     public GoonAI triggerGoon;
     private bool flag = false;
