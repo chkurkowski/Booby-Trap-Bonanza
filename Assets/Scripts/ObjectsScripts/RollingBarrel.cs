@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RollingBarrel : MonoBehaviour
+public class RollingBarrel : ObjectsScript
 {
     public int rollDirection = 1;
     public float rollSpeed = 15f;
@@ -24,7 +24,7 @@ public class RollingBarrel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(canMove)
+        if(isActive)
             Move();
     }
 
