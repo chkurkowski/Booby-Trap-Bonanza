@@ -51,13 +51,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 428e42ab330fb4167a8e091a39f24f99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explodingBarrelPreview: {fileID: 1707040267105348, guid: 1066a7f028e03478d94761a867b0bb3d,
+  explodingBarrelPreview: {fileID: 1707040267105348, guid: 2c66dfa9ff7904857805cce29b9f24eb,
     type: 2}
-  waterBarrelPreview: {fileID: 1350382271859888, guid: 78d59cb56918242a6a826fa9bdff1f46,
+  waterBarrelPreview: {fileID: 1350382271859888, guid: 8fbd9ecd2ed614cea80ebed90ab7f906,
     type: 2}
-  rollingBarrelPreview: {fileID: 1322959281585074, guid: 41f2fd0d42b224dea8d76a562b8d42f9,
+  rollingBarrelPreview: {fileID: 1322959281585074, guid: a2dc447906eaf43e9a31c5682c3e2846,
     type: 2}
-  chairPreview: {fileID: 1702424154088674, guid: 6a853813296284bb6a236c62afcd3368,
+  chairPreview: {fileID: 1702424154088674, guid: f8d244c2875c547d6a91c4a30c7e9cfd,
+    type: 2}
+  ghostPreview: {fileID: 1463651930491646, guid: 9699f8d072e1b4b819bd2c282ed19de6,
     type: 2}
   explodingBarrel: {fileID: 1707040267105348, guid: af947d867ed024c4e97fcf3918609db5,
     type: 2}
@@ -66,7 +68,26 @@ MonoBehaviour:
   rollingBarrel: {fileID: 1322959281585074, guid: e26101e1989078144bab01a1f7b1c600,
     type: 2}
   chair: {fileID: 1702424154088674, guid: bb7817e6b80741d4592c4cb8e6fff272, type: 2}
+  ghost: {fileID: 1463651930491646, guid: fd38aaae091d4446c9db0daedf9d5c6a, type: 2}
   cam: {fileID: 0}
-  selectedObject: 0
-  mousePosition: {x: 0, y: 0, z: 0}
-  currentObject: {fileID: 0}
+  objectButtons:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  cursor: {fileID: 0}
+  exBarrelRemaining: {fileID: 0}
+  waterBarrelRemaining: {fileID: 0}
+  rollingBarrelRemaining: {fileID: 0}
+  tableRemaining: {fileID: 0}
+  ghostsRemaining: {fileID: 0}
+  exBarrelNumber: 100
+  waterBarrelNumber: 100
+  rollingBarrelNumber: 100
+  tableNumber: 100
+  ghostNumber: 1
+  exBarrelText: {fileID: 0}
+  waterBarrelText: {fileID: 0}
+  rollingBarrelText: {fileID: 0}
+  tableText: {fileID: 0}
+  ghostText: {fileID: 0}

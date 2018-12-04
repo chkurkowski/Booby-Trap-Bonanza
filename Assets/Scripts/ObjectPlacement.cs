@@ -19,6 +19,8 @@ public class ObjectPlacement : MonoBehaviour {
     public Camera cam;
     public Button[] objectButtons;
 
+    public GameObject cursor;
+
 
     /*
      * 1 = explodingBarrel
@@ -72,6 +74,7 @@ public class ObjectPlacement : MonoBehaviour {
         waterBarrelText.SetActive(false);
         rollingBarrelText.SetActive(false);
         tableText.SetActive(false);
+        Cursor.visible = false;
 	}
 	
 	// Update is called once per frame
@@ -255,6 +258,7 @@ public class ObjectPlacement : MonoBehaviour {
     {
         if(currentObject != null)
         {
+            cursor.transform.position = new Vector3(100, 100);
             currentObject.transform.position = mousePosition;
             if (flipped)
             {
@@ -269,6 +273,10 @@ public class ObjectPlacement : MonoBehaviour {
                     currentObject.transform.localScale = new Vector3(-scale.x, scale.y, scale.z);
             }
             CheckValidPosition();
+        }
+        else
+        {
+            cursor.transform.position = mousePosition;
         }
     }
 
@@ -339,7 +347,7 @@ public class ObjectPlacement : MonoBehaviour {
         }
 
         //Activates Items
-        if(Input.GetKeyDown(KeyCode.Mouse1) && !targetingGhost)
+        if(Input.GetKeyDown(KeyCode.Mouse1) && !targetingGhost && selectedObject == 0)
         {
             Collider2D[] activatables = Physics2D.OverlapCircleAll(mousePosition, .05f);
 
@@ -348,10 +356,17 @@ public class ObjectPlacement : MonoBehaviour {
                 if(col.gameObject.layer == 8)
                 {
                     print("Activated the " + col.name);
-                    col.GetComponent<ObjectsScript>().isActive = true;
+                    cursor.GetComponent<Animator>().SetTrigger("RightClick");
+                    StartCoroutine("ActivateObject", col.gameObject.GetComponent<ObjectsScript>());
                 }
             }
         }
+    }
+
+    IEnumerator ActivateObject(ObjectsScript os)
+    {
+        yield return new WaitForSeconds(.5f);
+        os.isActive = true;
     }
 
     private void FlipItem()
