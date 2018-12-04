@@ -6,6 +6,18 @@ using UnityEngine.EventSystems;
 
 public class ObjectPlacement : MonoBehaviour {
 
+    #region Singleton
+
+    public static ObjectPlacement inst;
+
+    private void Awake()
+    {
+        if (inst != null)
+            inst = this;
+    }
+
+    #endregion
+
     public GameObject explodingBarrelPreview;
     public GameObject waterBarrelPreview;
     public GameObject rollingBarrelPreview;

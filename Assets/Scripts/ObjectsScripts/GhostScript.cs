@@ -50,6 +50,7 @@ public class GhostScript : MonoBehaviour {
 
             target.GetComponent<ObjectsScript>().isPossessed = true;
             target.GetComponent<ObjectsScript>().isActive = true;
+            Destroy(gameObject);
         }
     }
 }
