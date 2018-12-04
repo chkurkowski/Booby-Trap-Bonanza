@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HelpScreenManagerScript : MonoBehaviour {
+    
     public GameObject objectsButton;
     public GameObject controlsButton;
     public GameObject resumeButton;
@@ -19,13 +21,16 @@ public class HelpScreenManagerScript : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-        controlPageSprite.SetActive(false);
-        objectPageSprite.SetActive(false);
-        //
-        resumeButton.SetActive(false);
-        nextScreenButton.SetActive(false);
-        objectsButton.SetActive(false);
-        controlsButton.SetActive(false);
+        
+        if(SceneManager.GetActiveScene().name == "HelpScene")
+        {
+            Debug.Log("ehh");
+            currentPausedState = 1;
+        }
+        else
+        {
+            currentPausedState = 0;
+        }
 	}
 	
 	// Update is called once per frame
@@ -35,13 +40,20 @@ public class HelpScreenManagerScript : MonoBehaviour {
         {
             case 0://play screen
                 {
-                    controlPageSprite.SetActive(false);
-                    objectPageSprite.SetActive(false);
+                   
+                        controlPageSprite.SetActive(false);
+                        objectPageSprite.SetActive(false);
+
+
                     //
+                    if (SceneManager.GetActiveScene().name != "HelpScene")
+                    {
+                        objectsButton.SetActive(true);
+                        controlsButton.SetActive(true);
+                    }
                     resumeButton.SetActive(false);
                     nextScreenButton.SetActive(false);
-                    objectsButton.SetActive(true);
-                    controlsButton.SetActive(true);
+                   
                     Time.timeScale = 1;
                     break;
                 }
@@ -52,9 +64,13 @@ public class HelpScreenManagerScript : MonoBehaviour {
                     //
                     resumeButton.SetActive(true);
                     nextScreenButton.SetActive(true);
-                    objectsButton.SetActive(false);
-                    controlsButton.SetActive(false);
-                    Time.timeScale = 0;
+                    if (SceneManager.GetActiveScene().name != "HelpScene")
+                    {
+                        objectsButton.SetActive(false);
+                        controlsButton.SetActive(false);
+                        Time.timeScale = 0;
+                    }
+                   
                     break;
                 }
             case 2://objectPage
@@ -64,9 +80,13 @@ public class HelpScreenManagerScript : MonoBehaviour {
                     //
                     resumeButton.SetActive(true);
                     nextScreenButton.SetActive(true);
-                    objectsButton.SetActive(false);
-                    controlsButton.SetActive(false);
-                    Time.timeScale = 0;
+                    if (SceneManager.GetActiveScene().name != "HelpScene")
+                    {
+                        objectsButton.SetActive(false);
+                        controlsButton.SetActive(false);
+                        Time.timeScale = 0;
+                    }
+                    
                     break;
                 }
         }
