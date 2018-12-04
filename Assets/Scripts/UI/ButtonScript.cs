@@ -43,6 +43,6 @@ public class ButtonScript : MonoBehaviour {
 
     public void PlayButton()
     {
-        SceneManager.LoadScene("ExampleScene");
+        SceneManager.LoadScene("ExampleLevel");
     }
 }

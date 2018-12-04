@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Eddie's Scene.unity
-    guid: d72427719cc6765459db97261934293d
+    path: Assets/Scenes/HelpScene.unity
+    guid: 8b627d503e3a7134ab4f1773f74977a4
   - enabled: 1
     path: Assets/Scenes/ExampleLevel.unity
     guid: 7bd195ac0b8ccd747a17a8e73a3f6565
