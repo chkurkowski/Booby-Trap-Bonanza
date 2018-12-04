@@ -5,6 +5,7 @@ using UnityEngine;
 public class GhostJarScript : ObjectsScript {
 
     public GameObject target;
+    public GameObject particles;
     public GameObject ghost;
     private ScoreBarScripts scoreBarInfo;
     private ObjectPlacement placementManager;
@@ -29,6 +30,7 @@ public class GhostJarScript : ObjectsScript {
         {
             GameObject ghostGM = Instantiate(ghost, transform.position + Vector3.up, Quaternion.identity);
             ghostGM.GetComponent<GhostScript>().target = target;
+            ghostGM.GetComponent<GhostScript>().particles = particles;
             Destroy(gameObject);
         }
     }

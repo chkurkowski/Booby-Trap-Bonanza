@@ -83,13 +83,15 @@ MonoBehaviour:
   rollingBarrelRemaining: {fileID: 0}
   tableRemaining: {fileID: 0}
   ghostsRemaining: {fileID: 0}
-  exBarrelNumber: 100
-  waterBarrelNumber: 100
-  rollingBarrelNumber: 100
-  tableNumber: 100
+  exBarrelNumber: 3
+  waterBarrelNumber: 1
+  rollingBarrelNumber: 2
+  tableNumber: 1
   ghostNumber: 1
   exBarrelText: {fileID: 0}
   waterBarrelText: {fileID: 0}
   rollingBarrelText: {fileID: 0}
   tableText: {fileID: 0}
   ghostText: {fileID: 0}
+  ghostParticles: {fileID: 1077067831217510, guid: 6aea742fabe3f4ab49993d552635b209,
+    type: 2}

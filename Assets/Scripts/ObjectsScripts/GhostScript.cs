@@ -5,6 +5,7 @@ using UnityEngine;
 public class GhostScript : MonoBehaviour {
 
     public GameObject target;
+    public GameObject particles;
     private float speed = 5f;
 
     private float timer = 0;
@@ -47,9 +48,9 @@ public class GhostScript : MonoBehaviour {
     {
         if(col.gameObject == target)
         {
-
             target.GetComponent<ObjectsScript>().isPossessed = true;
             target.GetComponent<ObjectsScript>().isActive = true;
+            Destroy(particles);
             Destroy(gameObject);
         }
     }
