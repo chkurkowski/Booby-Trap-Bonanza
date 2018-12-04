@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 58573123027172360}
   - component: {fileID: 95154190191191594}
   - component: {fileID: 114249047571516770}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RollingBarrel
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -124,6 +124,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dc78f790a71e1444b4f4635aa15f3ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActive: 0
+  isPossessed: 0
   rollDirection: -1
   rollSpeed: 150
   scoreIncreaseAmount: 0.2
@@ -162,7 +164,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 208cdbbad6fa847c6ad6deca830a9969, type: 3}
   m_Color: {r: 0.6132076, g: 0.39894786, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0

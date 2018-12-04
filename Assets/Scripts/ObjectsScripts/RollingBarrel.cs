@@ -44,6 +44,8 @@ public class RollingBarrel : ObjectsScript
         if (trig.tag == "Interactable")
         {
             isActive = true;
+            gameObject.GetComponent<Animator>().SetBool("Rolling", true);
+            gameObject.layer = 0;
         }
         if(trig.tag == "Wall")
         {
