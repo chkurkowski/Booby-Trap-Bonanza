@@ -7,12 +7,14 @@ public class GhostJarScript : ObjectsScript {
     public GameObject target;
     public GameObject ghost;
     private ScoreBarScripts scoreBarInfo;
+    private ObjectPlacement placementManager;
     [Range(0, 1)]
     public float scoreIncreaseAmount = 0.2f;
 
     void Start()
     {
         scoreBarInfo = GameObject.Find("ScoreBar").GetComponent<ScoreBarScripts>();
+        placementManager = ObjectPlacement.inst;
     }
 
     // Update is called once per frame
