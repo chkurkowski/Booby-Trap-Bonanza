@@ -35,15 +35,15 @@ public class RollingBarrel : ObjectsScript
 
     public void OnTriggerEnter2D(Collider2D trig)
     {
-        if(trig.gameObject.layer == 8 || trig.gameObject.layer == 9)
+        if((trig.gameObject.layer == 8 || trig.gameObject.layer == 9) && isActive)
         {
             Destroy(gameObject);
             scoreBarInfo.IncreaseScoreBar(scoreIncreaseAmount);
         }
 
-        if (trig.tag == "Ground")
+        if (trig.tag == "Interactable")
         {
-            canMove = true;
+            isActive = true;
         }
         if(trig.tag == "Wall")
         {
