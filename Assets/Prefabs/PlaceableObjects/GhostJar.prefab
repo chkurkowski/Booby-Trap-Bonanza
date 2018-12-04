@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1463651930491646}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 100, y: 100, z: -0.93920624}
+  m_LocalPosition: {x: -25.78049, y: -9.7463875, z: -0.93920624}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -102,6 +102,7 @@ MonoBehaviour:
   isActive: 0
   isPossessed: 0
   target: {fileID: 0}
+  particles: {fileID: 0}
   ghost: {fileID: 1615987742221520, guid: 26833e5487bca4ec8ac5041c4f9bdbbc, type: 2}
   scoreIncreaseAmount: 0
 --- !u!212 &212087536676786322

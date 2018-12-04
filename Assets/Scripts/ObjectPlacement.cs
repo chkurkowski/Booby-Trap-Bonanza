@@ -77,7 +77,7 @@ public class ObjectPlacement : MonoBehaviour {
     public GameObject tableText;
     public GameObject ghostText; //TODO Add ghost Text
 
-
+    public GameObject ghostParticles;
 
     // Use this for initialization
     void Start () 
@@ -104,6 +104,7 @@ public class ObjectPlacement : MonoBehaviour {
 
         if(targetingGhost)
         {
+            untargetedGhost.GetComponent<GhostJarScript>().particles.transform.position = mousePosition;
             untargetedGhost.GetComponent<GhostJarScript>().target = FindTarget();
             if (untargetedGhost.GetComponent<GhostJarScript>().target != null)
                 targetingGhost = false;
@@ -287,7 +288,7 @@ public class ObjectPlacement : MonoBehaviour {
             }
             CheckValidPosition();
         }
-        else
+        else if(!targetingGhost)
         {
             cursor.transform.position = mousePosition;
         }
@@ -425,6 +426,7 @@ public class ObjectPlacement : MonoBehaviour {
     private void SpawnGhost()
     {
         untargetedGhost = Instantiate(ghost, mousePosition, Quaternion.identity);
+        untargetedGhost.GetComponent<GhostJarScript>().particles = Instantiate(ghostParticles, mousePosition, Quaternion.identity);
         SelectItem(0);
         targetingGhost = true;
     }
@@ -438,6 +440,8 @@ public class ObjectPlacement : MonoBehaviour {
             if (activatable.gameObject.layer == 8 && activatable.name != "GhostJar(Clone)")
             {
                 print("Found target: " + activatable.name);
+                untargetedGhost.GetComponent<GhostJarScript>().particles.gameObject.transform.position = activatable.gameObject.transform.position;
+                untargetedGhost.GetComponent<GhostJarScript>().particles.gameObject.transform.localScale = untargetedGhost.GetComponent<GhostJarScript>().particles.gameObject.transform.localScale * 3.5f;
                 return activatable.gameObject;
             }
         }
