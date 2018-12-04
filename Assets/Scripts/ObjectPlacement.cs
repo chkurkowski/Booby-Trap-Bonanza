@@ -97,7 +97,7 @@ public class ObjectPlacement : MonoBehaviour {
                 targetingGhost = false;
         }
 
-        ShowCursor();
+        ToggleCursor();
     }
 
     private void PlaceablesRemaining()
@@ -429,9 +429,14 @@ public class ObjectPlacement : MonoBehaviour {
         return null;
     }
 
-    private void ShowCursor()
+    private void ToggleCursor()
     {
         if(Input.GetKeyDown(KeyCode.C))
+            Cursor.visible = !Cursor.visible;
+    }
+
+    public void ShowCursor()
+    {
             Cursor.visible = !Cursor.visible;
     }
 }
