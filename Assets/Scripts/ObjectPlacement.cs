@@ -9,25 +9,29 @@ public class ObjectPlacement : MonoBehaviour {
     public GameObject waterBarrelPreview;
     public GameObject rollingBarrelPreview;
     public GameObject chairPreview;
+    public GameObject ghostPreview;
     public GameObject explodingBarrel;
     public GameObject waterBarrel;
     public GameObject rollingBarrel;
     public GameObject chair;
+    public GameObject ghost;
     public Camera cam;
+    public Button[] objectButtons;
+
 
     /*
      * 1 = explodingBarrel
      * 2 = waterBarrel
      * 3 = rollingBarrel
+     * 4 = sawTable
+     * 5 = ghost
      */
-    [SerializeField]
     private int selectedObject;
-    [SerializeField]
     private Vector3 mousePosition;
-    [SerializeField]
     private GameObject currentObject;
     private bool validPos = false;
     private Vector2 objectSize;
+    private GameObject untargetedGhost;
 
 
     //limited resources stuff
@@ -35,22 +39,28 @@ public class ObjectPlacement : MonoBehaviour {
     public Text waterBarrelRemaining;
     public Text rollingBarrelRemaining;
     public Text tableRemaining;
+    public Text ghostsRemaining;
     public int exBarrelNumber = 5;
     public int waterBarrelNumber = 5;
     public int rollingBarrelNumber = 5;
     public int tableNumber = 5;
+    public int ghostNumber = 1;
     private bool canPlaceEX = true;
     private bool canPlaceWater = true;
     private bool canPlaceRoll = true;
     private bool canPlaceTable = true;
+    private bool canPlaceGhost = true;
 
 
     private bool flipped = true;
+    private bool targetingGhost = false;
+
     //text popup stuff
     public GameObject exBarrelText;
     public GameObject waterBarrelText;
     public GameObject rollingBarrelText;
     public GameObject tableText;
+    public GameObject ghostText; //TODO Add ghost Text
 
 
 
@@ -73,58 +83,109 @@ public class ObjectPlacement : MonoBehaviour {
 
         SelectItem();
 
-        if (waterBarrelNumber <= 0)
+        PlaceablesRemaining();
+        DeactivateButtons();
+
+        if(targetingGhost)
         {
-            canPlaceWater = false;
-        }
-        if (exBarrelNumber <= 0)
-        {
-            canPlaceEX = false;
-        }
-        if (rollingBarrelNumber <= 0)
-        {
-            canPlaceRoll = false;
-        }
-        if(tableNumber <= 0)
-        {
-            canPlaceTable = false;
+            untargetedGhost.GetComponent<GhostJarScript>().target = FindTarget();
+            if (untargetedGhost.GetComponent<GhostJarScript>().target != null)
+                targetingGhost = false;
         }
 
     }
 
+    private void PlaceablesRemaining()
+    {
+        if (waterBarrelNumber <= 0)
+        {
+            canPlaceWater = false;
+        }
+
+        if (exBarrelNumber <= 0)
+        {
+            canPlaceEX = false;
+        }
+
+        if (rollingBarrelNumber <= 0)
+        {
+            canPlaceRoll = false;
+        }
+
+        if (tableNumber <= 0)
+        {
+            canPlaceTable = false;
+        }
+
+        if (ghostNumber <= 0)
+        {
+            canPlaceGhost = false;
+        }
+    }
+
+    private void DeactivateButtons()
+    {
+        if(targetingGhost)
+        {
+            foreach (Button b in objectButtons)
+            {
+                b.interactable = false;
+            }
+        }
+        else
+        {
+            foreach (Button b in objectButtons)
+            {
+                b.interactable = true;
+            }
+        }
+    }
+
     private void SelectItem()
     {
-        if(Input.GetKey(KeyCode.Alpha1))
+        if (!targetingGhost)
         {
-            SelectItem(1);
-            exBarrelText.SetActive(true);
-            waterBarrelText.SetActive(false);
-            rollingBarrelText.SetActive(false);
-            tableText.SetActive(false);
-        }
-        if (Input.GetKey(KeyCode.Alpha2))
-        {
-            SelectItem(2);
-            waterBarrelText.SetActive(true);
-            exBarrelText.SetActive(false);
-            rollingBarrelText.SetActive(false);
-            tableText.SetActive(false);
-        }
-        if (Input.GetKey(KeyCode.Alpha3))
-        {
-            SelectItem(3);
-            rollingBarrelText.SetActive(true);
-            exBarrelText.SetActive(false);
-            waterBarrelText.SetActive(false);
-            tableText.SetActive(false);
-        }
-        if (Input.GetKey(KeyCode.Alpha4))
-        {
-            SelectItem(4);
-            tableText.SetActive(true);
-            exBarrelText.SetActive(false);
-            waterBarrelText.SetActive(false);
-            rollingBarrelText.SetActive(false);
+            if (Input.GetKey(KeyCode.Alpha1))
+            {
+                SelectItem(1);
+                exBarrelText.SetActive(true);
+                waterBarrelText.SetActive(false);
+                rollingBarrelText.SetActive(false);
+                tableText.SetActive(false);
+            }
+            if (Input.GetKey(KeyCode.Alpha2))
+            {
+                SelectItem(2);
+                waterBarrelText.SetActive(true);
+                exBarrelText.SetActive(false);
+                rollingBarrelText.SetActive(false);
+                tableText.SetActive(false);
+            }
+            if (Input.GetKey(KeyCode.Alpha3))
+            {
+                SelectItem(3);
+                rollingBarrelText.SetActive(true);
+                exBarrelText.SetActive(false);
+                waterBarrelText.SetActive(false);
+                tableText.SetActive(false);
+            }
+            if (Input.GetKey(KeyCode.Alpha4))
+            {
+                SelectItem(4);
+                tableText.SetActive(true);
+                exBarrelText.SetActive(false);
+                waterBarrelText.SetActive(false);
+                rollingBarrelText.SetActive(false);
+            }
+            if (Input.GetKey(KeyCode.Alpha5))
+            {
+                SelectItem(5);
+                tableText.SetActive(false);
+                exBarrelText.SetActive(false);
+                waterBarrelText.SetActive(false);
+                rollingBarrelText.SetActive(false);
+                //TODO Activate ghost text
+            }
         }
     }
 
@@ -164,6 +225,12 @@ public class ObjectPlacement : MonoBehaviour {
             GameObject gm = Instantiate(chairPreview);
             currentObject = gm;
             objectSize = new Vector2(1.45f, 1.5f);
+        }
+        else if(selectedObject == 5)
+        {
+            GameObject gm = Instantiate(ghostPreview);
+            currentObject = gm;
+            objectSize = new Vector2(1f, 1f);
         }
         else
         {
@@ -248,11 +315,17 @@ public class ObjectPlacement : MonoBehaviour {
                         tableNumber--;
                         tableRemaining.text = tableNumber.ToString();
                     }
-
+                    break;
+                case 5:
+                    if(canPlaceGhost == true)
+                    {
+                        SpawnGhost();
+                    }
                     break;
             }
         }
 
+        //Activates Items
         if(Input.GetKeyDown(KeyCode.Mouse1))
         {
             Collider2D[] activatables = Physics2D.OverlapCircleAll(mousePosition, .05f);
@@ -303,5 +376,27 @@ public class ObjectPlacement : MonoBehaviour {
             chairGM.transform.localScale = new Vector3(-4f, 4f, 1);
         selectedObject = 0;
         Destroy(currentObject);
+    }
+
+    private void SpawnGhost()
+    {
+        untargetedGhost = Instantiate(ghost, mousePosition, Quaternion.identity);
+        SelectItem(0);
+        targetingGhost = true;
+    }
+
+    private GameObject FindTarget()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            Collider2D activatable = Physics2D.OverlapCircle(mousePosition, .05f);
+
+            if (activatable.gameObject.layer == 8 && activatable.name != "GhostJar(Clone)")
+            {
+                print("Found target: " + activatable.name);
+                return activatable.gameObject;
+            }
+        }
+        return null;
     }
 }

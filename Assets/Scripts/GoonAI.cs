@@ -164,18 +164,19 @@ public class GoonAI : MonoBehaviour
         Invoke("BurningDeath", 4);
         burning = true;
 
-        if (currentDirection > 0)
+        if (currentDirection >= 0)
         {
             //animatorInfo.SetFloat("speed", 1);
+            GetComponent<SpriteRenderer>().flipX = false;
             animatorInfo.SetBool("moveLeft", false);
             animatorInfo.SetBool("moveRight", true);
 
             transform.Translate(Vector3.right * speed);
         }
-
         else
         {
             //animatorInfo.SetFloat("speed", -1);
+            GetComponent<SpriteRenderer>().flipX = true;
             animatorInfo.SetBool("moveRight", false);
             animatorInfo.SetBool("moveLeft", true);
 
@@ -269,12 +270,12 @@ public class GoonAI : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if(superSliding && col.gameObject.tag == "Wall")
+        if (superSliding && col.gameObject.tag == "Wall")
         {
             animatorInfo.SetBool("isKill", true);
             state = State.DYING;
         }
-        else if(!superSliding)
+        else if (!superSliding)
         {
             if ((sliding && col.gameObject.layer == 8) || (sliding && col.gameObject.tag == "Wall"))
             {
@@ -299,6 +300,7 @@ public class GoonAI : MonoBehaviour
             else if (col.gameObject.name == "FlameWoosh(Clone)")
             {
                 animatorInfo.SetBool("isBurning", true);
+                animatorInfo.SetBool("isIdle", false);
                 state = State.BURNING;
             }
             else if (col.gameObject.name == "BarrelExplosion(Clone)")
@@ -322,9 +324,9 @@ public class GoonAI : MonoBehaviour
                 state = State.DYING;
             }
         }
-       
 
-       
+
+
     }
 
 
@@ -340,12 +342,12 @@ public class GoonAI : MonoBehaviour
                 if (currentDirection < 0)
                 {
                     currentDirection = 1;
-                }  
+                }
                 else
                 {
                     currentDirection = -1;
                 }
-                    
+
             }
         }
 
@@ -379,6 +381,7 @@ public class GoonAI : MonoBehaviour
             else if (col.gameObject.name == "FlameWoosh(Clone)")
             {
                 animatorInfo.SetBool("isBurning", true);
+                animatorInfo.SetBool("isIdle", false);
                 state = State.BURNING;
             }
             else if (col.gameObject.name == "BarrelExplosion(Clone)")
