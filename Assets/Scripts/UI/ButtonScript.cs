@@ -1,20 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ButtonScript : MonoBehaviour {
     private HelpScreenManagerScript helpManagerInfo; 
+
+
 	// Use this for initialization
 	void Start ()
     {
         helpManagerInfo = GameObject.Find("HelpScreenManager").GetComponent<HelpScreenManagerScript>();
 	}
 	
-	// Update is called once per frame
-	void Update ()
-    {
-		
-	}
+
 
     public void ControlButton()
     {
@@ -40,5 +39,10 @@ public class ButtonScript : MonoBehaviour {
     public void BackButton()
     {
         helpManagerInfo.currentPausedState = 0;
+    }
+
+    public void PlayButton()
+    {
+        SceneManager.LoadScene("ExampleScene");
     }
 }
