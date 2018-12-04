@@ -242,7 +242,7 @@ public class ObjectPlacement : MonoBehaviour {
         {
             GameObject gm = Instantiate(waterBarrelPreview);
             currentObject = gm;
-            objectSize = new Vector2(1f, 2.4f);
+            objectSize = new Vector2(1f, 1f);
         }
         else if (selectedObject == 3)
         {
@@ -254,7 +254,7 @@ public class ObjectPlacement : MonoBehaviour {
         {
             GameObject gm = Instantiate(chairPreview);
             currentObject = gm;
-            objectSize = new Vector2(1.45f, 1.5f);
+            objectSize = new Vector2(2f, 2f);
         }
         else if(selectedObject == 5)
         {

@@ -145,11 +145,8 @@ public class GoonAI : MonoBehaviour
                 //gameObject.GetComponent<SpriteRenderer>().flipX = true;
                 animatorInfo.SetBool("isIdle", false);
                 animatorInfo.SetBool("moveLeft", true);
-
             }
-
         }
-
     }
 
     private void Alert()
@@ -193,11 +190,16 @@ public class GoonAI : MonoBehaviour
         speed = .08f;
         sliding = true;
 
-        if (currentDirection > 0)
+        if (currentDirection >= 0)
+        {
             transform.Translate(Vector3.right * speed);
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
         else
+        {
             transform.Translate(-Vector3.right * speed);
-
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
         gameObject.layer = 0;
         gameObject.tag = "Interactable";
     }
