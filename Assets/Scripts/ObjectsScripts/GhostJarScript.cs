@@ -5,10 +5,10 @@ using UnityEngine;
 public class GhostJarScript : ObjectsScript {
 
     public GameObject target;
-    private float speed = 5f;
+    public GameObject ghost;
     private ScoreBarScripts scoreBarInfo;
     [Range(0, 1)]
-    public float scoreIncreaseAmount;
+    public float scoreIncreaseAmount = 0.2f;
 
     void Start()
     {
@@ -18,9 +18,16 @@ public class GhostJarScript : ObjectsScript {
     // Update is called once per frame
     private void Update () 
     {
-		if(isActive)
+        BreakJar();
+    }
+
+    private void BreakJar()
+    {
+        if (isActive)
         {
-            //TODO Break the Jar, move ghost towards target, possess Target on Collision
+            GameObject ghostGM = Instantiate(ghost, transform.position + Vector3.up, Quaternion.identity);
+            ghostGM.GetComponent<GhostScript>().target = target;
+            Destroy(gameObject);
         }
     }
 
