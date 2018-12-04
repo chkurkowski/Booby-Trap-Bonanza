@@ -25,7 +25,11 @@ public class RollingBarrel : ObjectsScript
     void Update()
     {
         if(isActive)
+        {
+            gameObject.GetComponent<Animator>().SetBool("Rolling", true);
+            gameObject.layer = 0;
             Move();
+        }
     }
 
     public void Move()
@@ -47,6 +51,7 @@ public class RollingBarrel : ObjectsScript
             gameObject.GetComponent<Animator>().SetBool("Rolling", true);
             gameObject.layer = 0;
         }
+
         if(trig.tag == "Wall")
         {
             Destroy(gameObject);

@@ -58,7 +58,7 @@ public class GoonAI : MonoBehaviour
     {
         while (alive)
         {
-            print(state);
+            //print(state);
 
             switch (state)
             {
@@ -332,7 +332,7 @@ public class GoonAI : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        //Debug.Log("This collision happened");
+        Debug.Log("Collided With: " + col.gameObject.name);
 
         if (burning)
         {

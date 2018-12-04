@@ -46,7 +46,7 @@ public class ScoreBarScripts : MonoBehaviour
             }
         }
         
-        Debug.Log("ColorChange should have happened.");
+        //Debug.Log("ColorChange should have happened.");
 
     }
 
