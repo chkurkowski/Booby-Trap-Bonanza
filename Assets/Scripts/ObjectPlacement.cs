@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class ObjectPlacement : MonoBehaviour {
 
@@ -145,6 +146,15 @@ public class ObjectPlacement : MonoBehaviour {
     {
         if (!targetingGhost)
         {
+            if(Input.GetKey(KeyCode.Alpha0))
+            {
+                SelectItem(0);
+                exBarrelText.SetActive(false);
+                waterBarrelText.SetActive(false);
+                rollingBarrelText.SetActive(false);
+                tableText.SetActive(false);
+                ghostText.SetActive(false);
+            }
             if (Input.GetKey(KeyCode.Alpha1))
             {
                 SelectItem(1);
@@ -152,6 +162,7 @@ public class ObjectPlacement : MonoBehaviour {
                 waterBarrelText.SetActive(false);
                 rollingBarrelText.SetActive(false);
                 tableText.SetActive(false);
+                ghostText.SetActive(false);
             }
             if (Input.GetKey(KeyCode.Alpha2))
             {
@@ -160,6 +171,7 @@ public class ObjectPlacement : MonoBehaviour {
                 exBarrelText.SetActive(false);
                 rollingBarrelText.SetActive(false);
                 tableText.SetActive(false);
+                ghostText.SetActive(false);
             }
             if (Input.GetKey(KeyCode.Alpha3))
             {
@@ -168,6 +180,7 @@ public class ObjectPlacement : MonoBehaviour {
                 exBarrelText.SetActive(false);
                 waterBarrelText.SetActive(false);
                 tableText.SetActive(false);
+                ghostText.SetActive(false);
             }
             if (Input.GetKey(KeyCode.Alpha4))
             {
@@ -176,6 +189,7 @@ public class ObjectPlacement : MonoBehaviour {
                 exBarrelText.SetActive(false);
                 waterBarrelText.SetActive(false);
                 rollingBarrelText.SetActive(false);
+                ghostText.SetActive(false);
             }
             if (Input.GetKey(KeyCode.Alpha5))
             {
@@ -197,11 +211,10 @@ public class ObjectPlacement : MonoBehaviour {
 
     public void SelectItem(int s)
     {
-        if (selectedObject != 0)
-            Destroy(currentObject);
+        Destroy(currentObject);
        
         selectedObject = s;
-
+        
         if (selectedObject == 1)
         {
             GameObject gm = Instantiate(explodingBarrelPreview);
@@ -277,7 +290,7 @@ public class ObjectPlacement : MonoBehaviour {
 
     private void ClickToPlace()
     {
-        if(Input.GetKeyDown(KeyCode.Mouse0) && currentObject != null && validPos)
+        if(Input.GetKeyDown(KeyCode.Mouse0) && currentObject != null && validPos && !EventSystem.current.IsPointerOverGameObject())
         {
             switch(selectedObject)
             {
@@ -326,7 +339,7 @@ public class ObjectPlacement : MonoBehaviour {
         }
 
         //Activates Items
-        if(Input.GetKeyDown(KeyCode.Mouse1))
+        if(Input.GetKeyDown(KeyCode.Mouse1) && !targetingGhost)
         {
             Collider2D[] activatables = Physics2D.OverlapCircleAll(mousePosition, .05f);
 

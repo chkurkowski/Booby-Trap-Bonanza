@@ -6022,8 +6022,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   triggerGoon1: {fileID: 1509029320}
-  triggerGoon2: {fileID: 1651719660}
-  triggerGoon3: {fileID: 1800150546}
+  triggerGoon2: {fileID: 0}
+  triggerGoon3: {fileID: 0}
   goonsDead: 0
 --- !u!4 &2083681577
 Transform:
