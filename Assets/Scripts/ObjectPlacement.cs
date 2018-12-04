@@ -354,6 +354,9 @@ public class ObjectPlacement : MonoBehaviour {
                     if(canPlaceGhost == true)
                     {
                         SpawnGhost();
+                        ghostNumber--;
+                        ghostsRemaining.text = ghostNumber.ToString();
+
                     }
                     break;
             }
