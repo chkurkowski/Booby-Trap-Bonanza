@@ -45,4 +45,9 @@ public class ButtonScript : MonoBehaviour {
     {
         SceneManager.LoadScene("ExampleLevel");
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }
